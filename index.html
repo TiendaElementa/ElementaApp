@@ -7,10 +7,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Comprobantes">
-<title>App Elementa - Carga entregas v2504260022</title>
+<title>App Elementa - Carga entregas v260023</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
-/* ── DRIVE SYNC BADGE ── */
+/* DRIVE SYNC BADGE */
 .drive-badge{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:700;font-family:'DM Mono',monospace;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .2s;white-space:nowrap}
 .drive-badge.connected{border-color:rgba(110,231,183,.4);color:var(--accent)}
 .drive-badge.syncing{border-color:rgba(129,140,248,.4);color:var(--accent2);animation:pulse 1.2s infinite}
@@ -33,7 +33,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-/* ── HEADER ── */
+/* HEADER */
 .header{background:linear-gradient(135deg,#0f0f1a,#1a1030);border-bottom:1px solid var(--border);padding:18px 16px 14px;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px)}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .logo{font-size:19px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -43,11 +43,16 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .stat-num{font-size:16px;font-weight:700;color:var(--accent);line-height:1}
 .stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
 
-/* ── LAYOUT ── */
+/* LAYOUT */
 .main{padding:14px;display:flex;flex-direction:column;gap:12px;padding-bottom:30px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.card-header{display:flex;align-items:center;gap:10px;padding:13px 14px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .18s,box-shadow .18s,background .18s}
+.card.is-open{border-color:rgba(129,140,248,.35);box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.card-header{display:flex;align-items:center;gap:10px;padding:13px 14px;border-bottom:1px solid transparent;cursor:pointer;user-select:none}
+.card.is-open .card-header{border-bottom-color:var(--border);background:rgba(255,255,255,.02)}
 .card-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.card-icon.module-number{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;border:1px solid rgba(255,255,255,.08);background:var(--surface2)!important;color:var(--accent2)}
+.card-icon.module-number + .card-chevron{margin-left:0;margin-right:2px}
+.card-icon.module-number + .card-chevron + div{flex:1;min-width:0}
 .card-title{font-size:13px;font-weight:700}
 .card-sub{font-size:10px;color:var(--muted);margin-top:1px}
 .card-chevron{margin-left:auto;color:var(--muted);font-size:11px;transition:transform .2s}
@@ -55,14 +60,14 @@ body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--text);min-he
 .card-body{padding:14px;display:none}
 .card-body.open{display:block}
 
-/* ── BOTONES ── */
+/* BOTONES */
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;-webkit-appearance:none}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:linear-gradient(135deg,var(--accent),#34d399);color:#0a0a0f}
 .btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
 .btn-danger{background:rgba(248,113,113,.15);color:var(--danger);border:1px solid rgba(248,113,113,.3)}
 
-/* ── FORMULARIOS ── */
+/* FORMULARIOS */
 label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 input,select,textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:11px;outline:none;-webkit-appearance:none;transition:border-color .15s}
 input:focus,select:focus,textarea:focus{border-color:var(--accent)}
@@ -71,13 +76,13 @@ select option{background:var(--surface)}
 .form-row{display:flex;gap:8px}
 .form-row .form-group{flex:1}
 
-/* ── ALERTAS ── */
+/* ALERTAS */
 .alert{padding:11px 13px;border-radius:8px;font-size:12px;margin-bottom:12px;display:flex;align-items:flex-start;gap:8px;line-height:1.5}
 .alert-warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:var(--warn)}
 .alert-info{background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.3);color:var(--accent2)}
 .alert-success{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--accent)}
 
-/* ── FILTRO PROVEEDOR ── */
+/* FILTRO PROVEEDOR */
 .prov-filter-wrap{margin-bottom:12px}
 .prov-filter-scroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
 .prov-filter-scroll::-webkit-scrollbar{display:none}
@@ -85,8 +90,9 @@ select option{background:var(--surface)}
 .pf-chip.active{background:rgba(110,231,183,.15);border-color:var(--accent);color:var(--accent)}
 .pf-chip.all-chip{border-color:var(--accent2);color:var(--accent2)}
 .pf-chip.all-chip.active{background:rgba(129,140,248,.15)}
+.inline-help{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}
 
-/* ── TABLA ── */
+/* TABLA */
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;border:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mono',monospace;min-width:680px}
 th{background:var(--surface2);color:var(--muted);text-transform:uppercase;letter-spacing:.5px;font-size:9px;padding:9px 11px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border)}
@@ -100,22 +106,43 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 .badge-pedido{background:rgba(129,140,248,.15);color:var(--accent2)}
 .badge-otro{background:rgba(148,163,184,.15);color:var(--muted)}
 
-/* ── RESUMEN PROVEEDORES ── */
+/* RESUMEN PROVEEDORES */
 .resumen-table{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mono',monospace;margin-top:10px}
 .resumen-table th{background:var(--surface2);color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
 .resumen-table td{padding:8px 10px;border-bottom:1px solid rgba(42,42,58,.4);font-size:11px}
 .resumen-table tr:last-child td{border-bottom:none;font-weight:700;color:var(--accent)}
 .resumen-table .r-num{text-align:right}
 
-/* ── BIBLIOTECA PROVEEDORES ── */
+/* BIBLIOTECA PROVEEDORES */
 .patron-item{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px;margin-bottom:7px}
-.patron-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.patron-header{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:5px}
 .patron-name{font-size:12px;font-weight:700;color:var(--accent)}
 .patron-cuit{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted)}
+.patron-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .patron-cols{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.5}
 .patron-new{border-color:rgba(110,231,183,.4)}
+.file-preview-card{position:relative;flex:1;min-width:120px;max-width:19%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px}
+.file-preview-card.status-duplicado{border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.07)}
+.file-preview-card.status-no-leido,.file-preview-card.status-problema{border-color:rgba(248,113,113,.45);background:rgba(248,113,113,.07)}
+.file-preview-card.status-procesado{border-color:rgba(110,231,183,.45);background:rgba(110,231,183,.06)}
+.file-preview-num{position:absolute;left:6px;top:6px;width:22px;height:22px;border-radius:50%;background:#0a0a0f;border:1px solid var(--accent);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;z-index:2}
+.file-preview-remove{position:absolute;right:6px;top:6px;width:24px;height:24px;border-radius:50%;border:1px solid rgba(248,113,113,.45);background:rgba(10,10,15,.85);color:var(--danger);font-size:14px;font-weight:800;cursor:pointer;z-index:2}
+.file-preview-name{font-size:9px;color:var(--muted);margin-top:5px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'DM Mono',monospace}
+.file-preview-status{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-top:5px;text-align:center}
+.file-preview-status.ok{color:var(--accent)}
+.file-preview-status.warn{color:var(--warn)}
+.file-preview-status.danger{color:var(--danger)}
+.file-preview-actions{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;justify-content:center}
+.mini-action{border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text);border-radius:5px;padding:4px 7px;font-size:9px;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer}
+.mini-action.warn{border-color:rgba(251,191,36,.4);color:var(--warn)}
+.mini-action.danger{border-color:rgba(248,113,113,.4);color:var(--danger)}
+.load-summary{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 10px}
+.load-pill{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:7px 9px;font-size:10px;color:var(--muted);font-family:'DM Mono',monospace}
+.load-pill strong{color:var(--accent);font-family:'Syne',sans-serif}
+.problem-history{background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.2);border-radius:8px;padding:9px 10px;margin-bottom:10px;font-size:10px;color:var(--muted);font-family:'DM Mono',monospace;line-height:1.5}
+.problem-history-title{font-family:'Syne',sans-serif;color:var(--accent2);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
 
-/* ── MODALES ── */
+/* MODALES */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:200;backdrop-filter:blur(4px);align-items:flex-end}
 .modal-overlay.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;width:100%;padding:18px;max-height:90vh;overflow-y:auto}
@@ -123,7 +150,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 .modal-actions{display:flex;gap:10px;margin-top:14px}
 .modal-actions .btn{flex:1}
 
-/* ── MISCELÁNEOS ── */
+/* MISCELÁNEOS */
 .chip-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
 .chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 10px;font-size:11px;cursor:pointer;transition:all .15s}
 .chip:active{background:var(--accent);color:#0a0a0f;border-color:var(--accent)}
@@ -144,7 +171,8 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 <div class="header">
   <div class="header-top">
     <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABaAI0DASIAAhEBAxEB/8QAHQABAAMAAgMBAAAAAAAAAAAAAAYHCAMFAgQJAf/EAEAQAAEDAwMCAwUGAgYLAAAAAAECAwQFBhEAByESEwgxQRQiMlFhFRYjUnGBCXIkM0JikbM0NTY3dHV2gqGywf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDGWmmmgaaaaBppr9QlS1hCElSlHAAGSToPzVz7XeGjdK/IjNRapjNDpjvKJVVWpnrT80tgFZHyJSAfn660f4SvDhAtanQb3vmAJFyOpD8SE+nKKeDyklPq9jB5+DyHIzrUOgxrTfA4jtBVR3IV3COUR6Rwk/zKd5/wGuruXwQ12PGU5bl90+oPckMzYK4wx8utKnOf2GtM7i73bYWDIdh3FdUVFQaHvQoyVSHwfyqSgHoP82NRJnxOWQ4C592L7RGAB9pNDUWsEEg5CifIZ8v/ALoMG7nbX3xtvPTFu2gyITbhwzKThyO9/K4nKSfXp4I9QNQzX1Utm/8AazdylyqDT6vTK23IZKZVLlNlDpT6hTTgCuD6gcHnPkdYo8WWwT21lRbr9u9+Vac1zoSVnqXCdOSGln1SR8KjzwQecFQUFpppoGmmmgaaaaBpppoGmmmga0B4F9vmLz3e+2ai0l2m222mapChlLkgkhlJ/QhS/wBWwPXWf9b0/hwU1tnam4Kt2gl6XWyyV9OCpDbLZTz6gFxf750Go9Zo3v3Nrl33nP2wsCvR7fpVLaUq7bpdV0t09HkWkLyMK808HqKuAUhKjq6N6LpVZO1Ny3Q2oJfgQHFxyRkd5Q6Ws/TrUnWbPBRYbNTsh7cG80IfpjE16ZCZdHUl+Q2T1zXs8rUjCkIB4Se4oDqVnQclOvnZrYqkQZ9C2+r9XemH8K4ajFQy/PVj3nGi+Q70epKEBGSOcnUxsfxhbY12c3CrMaq24tw4D8ptLjAOeMrbJUP1KQB89Zbh3y3uTv5Iuq7LQrN7F91QptAhuEANpP4bZCQo9CE8lIGFEkk8nO2Ns6/ZN1x12fUtuPunUW4/WaDV6S20h5kEArZ93odkHAJA4PmBxoO9vXbrb7cylMVCbBivuuJS9BrVNcDcpv1S40+jk+hHJSfkdQB1VScMzYnd6Umpxa9Dcat+5O10md0jPbdHkmU2QFA5wvA9fi7SNEi7Nbl0al0tS2LJvGUqI3AJJbpdTI6m+zn4W3gFAo8gsAjAJGpN4hbUXdm1lUZhFbdZpiftSjvtnDjMxgFbZSfQnBT+ijoPl3dVFmW3c1Ut+ohImU2W7Ef6fLrbWUkj6ZHGut1YG/8AWodz7ju3VDaSz9tQIc6Q0n4USFx0d4D6dwL1X+gaaaaBpppoGmmmgaaaaBrdf8NursPbd3PQQse0RKsmYpOOel5lCAf8WFawpq6PB3uS1t1u9GNSeDVFrSBAnLUcJaKlAtun6JXgE+iVKOg2b40Y7snwz3c2yMqSiK4R/dTLZUf/AACf21x+HanR654S6FSIbiEonUSRFKknhK1qdQv9woqz9c6tC8KHDui0qtbs7/RapCdiOKAz0pcQU9Q+ozkfUayV4U9yxtPdNY2T3IkopyYs9Yp8x49LKHCeUFR8m18LSo4HvHPmNB1v8O12jUe+7xoVZbbiXOpppqMh/Ac6G1uCQ0nPqFdskAnITnHunV9+JO6KZb8ywm232fvG7dMIU9oEd0NLUW3zjz6FNrUg/MqT8tVz4o/DPJvGtO33ty4wxXHyHJsBTgaRKXxh1tfkhw+uSArzyDnqy1Jtfeew7h+9022LnhTqXlz7UlU5chpj3Snr7qkqb4ycKzwcEYIB0Gs/Gld0Q3BtzYtMkJdryrnh1PttqHWwEEtt5+RUp04/kP76TqDzEeBIflBJjttKW6FAEdIBJznjy1hrwW7Y3De24o3bvBUyRAhPKfjSZiityfM8gsFXKko8+r8wSBnCsXz40dy4ljbSTqRHkp+3LhaXCitJVhaGlDDzv0ASSkH8yh8joPm84644htC1lSWk9CB+UZKsf4kn99eGmmgaaaaBpppoGmmmgaaaaBpppoNieErxMw6bTYdh7jzexHYSGabWHTlKEDhLT59APJK/IDAVgDOrp8QOzkTcuNDu205kGHdURr+iylpS5FqDBGey+MELQQeCQRgkEEHj5panW3G7u4u3o7Vq3RMiRCcmG50vR/PnDbgKUk+pSAfroNBUa4Ydmvpty+KruRs5OBKENQJC5lFc+amEuJcUgZ9EKUkfmHkJwxF8P1TfZqt8b1Sb4DC+61FrdbBjoUnIBEdASCfPgg5+RB1TbnjAvmoUtVNuO0LMrbBxlMmE4Ur8+VJLhSf2A1Wl2bpIrTzrsDbmwKCtYwFwaMCR8/dcUpvP6IGg1zuR4tduLTpJpdgxDcEthAZjoZZMaCwAMAZIBIHGEoTgj+0NYj3FvW47/umRcl0VBUyc97o46UMoHwttp8kpGfL9SckkmPuKK1qWQkFRJPSkAfsBwNeOgaaaaBpppoGmmmgmez9oUe+rxjWxUrkdoUqetLMBwU/2lt15RwELwtJQD+bCvrjz1Lrg2u27tu+pVpXFu27AlQ5BjynW226622rGc5DvI5HOo94cf9/Vj/8AO43+YNXZuDY219weKCtt3BuB1SpNQdU9Rvst9vqcDRIa9pCgkZIHvD9NBB7Q2Dp9f3bru2ir69lq8A92C6KV3GJ0coS4HeoO+4ShaVBPvDn4tVXuBSbfodyPUy27ikXBEYHQ5Mdp/sgLoUQoJQVrJTwMKJGcnjjJuLwFvOveIiGp51bik0uQgFaiSEpQkAc+gAAA+Q1RVd/13P8A+Jc/9joLW282ety79sate6NwHoKKE2lVYiuURS1MFWentqS7+IDg84SePLXp03bSyK7bFwT7Z3OVUazR4Ds9NKeoS46pLLYCnClwuEZSnJwATgZxjJFh+FqLTpvh33ii1aqfZUFxmKl+Z2FPdlOHPe6E8q/Qari7rVsWh7UouC0rzXcNWXWxCeeTEdhFhhUdwlHbWrKgo+avpj55DuttthDuJtTVLyta6HH6hSm3PaqS9S1IKnko6w226HCF9Q8jgckAgZzqktaO2Bvte2u1du3MqQoQ3L/WxOZGcLjewoS6o+hKQ6FAfNI14X7s5DheKxVEWlDdnyyq4VvpP4SKakF18AjyAKVtj9Un10EYvTY77l7L0fcK5bmXGlVltswaS1TStXW4krSlxwuJ6B0DJPSSCcYOueLs1aUjaRvcwblPtUYSEw5CF0BXeZkHGUdIeIUBke8Dzn01Pt+bqe3A8JFLu19hxLrt8P8ASkj+oYKJPbRxwAlHaR/264tv6fQ6n4GahFuG4PsCCbq6jM9jXJwoJbwnoQQefn6aCrpe29kvbfTrtt7ctdXNKkx0VOAaIph6PHdcDfeT1O4cwSkYGBkgEjIz226WwNQtTbGmbkW/XhctuzUNuuOCCqM7GbcALa1oKlcEnpPPBI8851H90bctC27LtaZZtzLrqqqJqKjLSy5G6+2410NFlRJSB58+eQfQYuS3912dvrjsiiXI2JtlV+xqdGq8RxPWhAUHU94J9cA4UB5pz5kDQUrs9YVuX0irNVS83rfl02G9UFt/ZJkoXFZR1urCg4k9YAOEEc4+L013Vw7Y7fW/R6PLq+6zsebVoqZzUBNvLcdaiuZLLjhS8UpUtHSrozkdXqMKNhzdqXdsdybv+z3DNter2NW5VEnJV1pcaMRR7ZUOCpIUOfUFKvXAzG+88+53H3XHVhKU9S1FR6UgJSMn0AAA+QA0F4bj7H2ht5W6XS7t3UVDVUYyZbbjNvOvJS0pRT1Hpdzng8aitZ2mmM73QNtaJV2qyipLiqg1RpjpbfjvtJd74T1H3UpUonk/AdWf/EE/24s7/ptr/Nc1HfD5a13ybCu6+bdiPzKymOmgURZkJbLCnQDIdQpak9JQz7oweC99NBV+6tnTbA3CrNoT1l12nSS2h3o6e82QFNuY9OpBScZOM41GNar8bVrVKq2fZm602niJVJERum19lCkrDUgJKkHKCRjIdTnPl0DWVNBY3hzXQ4O7NDr9xXLT6FT6PMamuLlIdWp7oVnobDaFZUf7xAAyefIzfeO3rAvbdSu3VA3kteNCqcvvpQ9Emd1sEAEEBkgkYPrz9NUFpoNWbM1XZuwt82q7S72pka36PRk08yXWZPfqspaApyQEdBCE5UU4yMdAAB+I1ozt5tzKuoyKnvZbSaS7LU48Y8OYX+0VE4SktBIURxycD645p7TQavs6rbTwLE3Wt+Pf1Bosa7ZakUaMliUsRI7a1hountnlQIOAVYB+fArez7K2oodQfrV17nUCvxIMZ15mkQY0wKnPBCu20pam0dKSrpyQefLI8xTGmguCuNWwjw3UihxL4oD1ajVd+ryqehEnuKDrLTaW0qLYR3EhHvDIT8lHHMnuDeqnVLwsU22lBtV6NpVQXZBSe6mlpUh3IV+VXbZbIPn0qOs8aaDRMifZ6vCO3YKtxrfXXmasawiMGpPSEdB/AC+zy5knz93Jx1Y512NCf2+c8Kq9tpm6VvRK3LqqaoSY8tTTIwj8JSg1nqATyQCM8DI51mXTQXFS7O2soVuV6dVtyKFcVXchmLSIMSPLQ2h91QR7Q4tTaThsFS+nBzj1x0n1vEAm25MG0JNAvSjV1VNoEOkS2IqH0uJdaCypY7jaQW+QAchWT8I1U2mg0ZsrvfEjbJ3ftleT6SBQagm3ZjqeotuLjuJ9mz5jJV7h+pTnHSNULbVMj1esMwJVZp9GZcyVTJ3c7LeBnntoWrnyGEnk+nnrrdNBpfxb1Wxtxq7bNUtfcSgOohQWqZIbfblNqR+IT3v6kgoAVz/aGOArUD33etpi07Itu0LtpVbpdGgLTIRGbeQ6qc6srkPKDiEgoOG0p5JARggcaqTTQaU2FuKxnfDvd23l/wB70qmMVd3vUppbT7r0R8D41hLfSE9bbSgEqJI684zznasw26fVJEJmoRKi2ysoTKiFZaeH5k9aUqx+qQfpr1NNB//Z" alt="Elementa" style="height:44px;width:auto;object-fit:contain;border-radius:6px">
-    <span style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;margin-left:6px;align-self:flex-end;padding-bottom:4px;letter-spacing:.5px">v.260022 ☁️</span>
+    <span style="font-size:15px;font-weight:800;letter-spacing:.6px;color:var(--text);white-space:nowrap">App Entregas</span>
+    <span id="appVersionBadge" style="font-size:9px;color:var(--muted);font-family:'DM Mono',monospace;margin-left:6px;align-self:flex-end;padding-bottom:4px;letter-spacing:.5px">v.260023</span>
     <div class="session-badge" id="sessionDate"></div>
     <div id="semaforoBadge" onclick="semaforoClick()" title="Estado del sistema" style="display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:700;font-family:'DM Mono',monospace;border:1px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .2s;white-space:nowrap">
       <div id="semaforoDot" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--muted);transition:all .3s"></div>
@@ -213,12 +241,14 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
       <div id="imgDropZone" onclick="document.getElementById('imgFileInput').click()" style="border:2px dashed rgba(110,231,183,.35);border-radius:10px;padding:22px 14px;text-align:center;cursor:pointer;margin-bottom:12px;transition:border-color .2s;background:rgba(110,231,183,.03)">
         <div style="font-size:28px;margin-bottom:6px">📄</div>
         <div style="font-size:12px;font-weight:700;color:var(--accent)">Tocá para seleccionar archivos</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:3px">JPG · PNG · PDF · hasta 5 archivos a la vez</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:3px">JPG - PNG - PDF - hasta 5 archivos a la vez</div>
       </div>
       <input type="file" id="imgFileInput" accept=".jpg,.jpeg,.png,.pdf,image/*,application/pdf" multiple style="display:none" onchange="imgOnSelect(event)">
+      <div id="imgLoadSummary" class="load-summary" style="display:none"></div>
       <div id="imgPreviews" style="display:none;gap:8px;margin-bottom:12px;flex-wrap:wrap"></div>
       <div id="imgApiKeyAlert" class="alert alert-warn" style="display:none;margin-bottom:10px">🔑 API Key no configurada. Andá a <strong>Configuración Técnica</strong> para ingresarla.</div>
       <div id="imgStatus" style="display:none" class="alert alert-info"></div>
+      <div id="imgProblemHistory" class="problem-history" style="display:none"></div>
       <button id="imgProcBtn" class="btn btn-primary" style="display:none;margin-top:4px" onclick="imgProcesar()">
         <span>✨ Extraer datos con Claude</span>
       </button>
@@ -239,7 +269,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
   </div>
   <div class="card-body" id="tableCard">
     <div class="prov-filter-wrap" id="provFilterWrap" style="display:none">
-      <div class="prov-filter-scroll" id="provFilterChips"></div>
+      <select id="provFilterSelect" onchange="setProvFiltro(this.value||null)" style="font-size:12px"></select>
     </div>
     <div id="resumenWrap" style="display:none;margin-bottom:12px">
       <table class="resumen-table" id="resumenTable"></table>
@@ -352,19 +382,16 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <div class="card-chevron" id="evolucionCardChev">▼</div>
   </div>
   <div class="card-body" id="evolucionCard">
-    <div class="form-group" style="position:relative">
+    <div class="form-group">
       <label>Proveedor (opcional)</label>
-      <input type="text" id="evProv" placeholder="Escribí para filtrar..." oninput="evOnProvInput()" autocomplete="off">
-      <div id="evProvDrop" style="display:none;position:absolute;left:0;right:0;top:100%;z-index:50;background:var(--surface);border:1px solid var(--accent2);border-radius:8px;max-height:180px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.5)"></div>
+      <select id="evProvSelect" onchange="evOnProvSelect()" style="font-size:12px"></select>
     </div>
     <div class="form-group">
-      <label>Palabras clave del artículo</label>
-      <input type="text" id="evQuery" placeholder="ej: avena · granola · aceite" oninput="evBuscarDesc()">
+      <label>Artículo</label>
+      <select id="evDescSelect" onchange="evOnDescSelect()" style="font-size:12px"></select>
+      <div class="inline-help">Primero elegí proveedor para acotar la lista.</div>
     </div>
-    <div id="evSugerencias" style="display:none;margin-bottom:12px">
-      <label>Seleccioná el artículo</label>
-      <div id="evSugList" style="display:flex;flex-direction:column;gap:5px;max-height:160px;overflow-y:auto"></div>
-    </div>
+    <div id="evSugerencias" style="display:none;margin-bottom:12px"></div>
     <div id="evResultado" style="display:none">
       <div class="divider" style="margin-bottom:12px"></div>
       <div id="evDescLabel" style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:10px;line-height:1.4"></div>
@@ -403,7 +430,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <div id="addTabNuevo">
       <div class="form-group">
         <label>Proveedor</label>
-        <div class="chip-row" id="provChips"></div>
+        <select id="inProvSelect" onchange="selectProv(this.value)" style="font-size:12px;margin-bottom:8px"></select>
         <div style="display:flex;gap:8px">
           <input type="text" id="inProv" placeholder="Nombre del proveedor" style="flex:1">
           <input type="text" id="inCuit" placeholder="CUIT" style="width:135px">
@@ -529,15 +556,15 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <div class="card-icon" style="background:rgba(248,113,113,.1)">⚙️</div>
     <div>
       <div class="card-title" style="text-transform:uppercase;letter-spacing:1px;font-size:12px">CONFIGURACIÓN TÉCNICA</div>
-      <div class="card-sub">API Key · Google Drive · Backup</div>
+      <div class="card-sub">API Key - Google Drive - Backup</div>
     </div>
     <div class="card-chevron" id="sesionCardChev">▼</div>
   </div>
   <div class="card-body" id="sesionCard">
 
     <!-- API Key -->
-    <div id="apiKeySection" style="background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.2);border-radius:10px;padding:12px;margin-bottom:12px">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <div style="background:rgba(129,140,248,.06);border:1px solid rgba(129,140,248,.2);border-radius:10px;padding:12px;margin-bottom:12px">
+      <div id="apiKeyTitleRow" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
         <div style="font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.5px">🔑 API Key Anthropic</div>
         <span id="apiKeyStatus2" style="font-size:10px;font-weight:700"></span>
       </div>
@@ -545,30 +572,40 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
         <input type="password" id="apiKeyInput" placeholder="sk-ant-..." oninput="apiKeyOnInput()" style="flex:1;font-size:11px;font-family:'DM Mono',monospace" autocomplete="off">
         <button onclick="apiKeySave()" style="padding:0 12px;background:rgba(129,140,248,.2);border:1px solid rgba(129,140,248,.4);color:var(--accent2);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;white-space:nowrap">Guardar</button>
       </div>
-      <div style="font-size:9px;color:var(--muted);line-height:1.5">Obtenela en <span style="color:var(--accent2)">console.anthropic.com</span> → API Keys.</div>
-      <!-- Uso API -->
+      <div id="apiKeyConfiguredView" style="display:none;gap:8px;align-items:center;margin-bottom:6px">
+        <div style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 11px;font-size:11px;color:var(--accent);font-family:'DM Mono',monospace">API Key configurada</div>
+        <button onclick="apiKeyReveal()" style="padding:9px 12px;background:rgba(129,140,248,.2);border:1px solid rgba(129,140,248,.4);color:var(--accent2);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;white-space:nowrap">Cambiar</button>
+      </div>
+      <div style="font-size:9px;color:var(--muted);line-height:1.5">Obtenela en <span style="color:var(--accent2)">console.anthropic.com</span> → API Keys. Se guarda en este dispositivo y se sincroniza con Drive.</div>
+      <!-- Credito API -->
       <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(129,140,248,.2)">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-          <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap">Uso estimado</span>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap">Credito disponible</span>
           <div style="flex:1;height:5px;background:var(--surface2);border-radius:99px;overflow:hidden">
-            <div id="creditBar2" style="height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s;width:100%"></div>
+            <div id="creditBar2" style="height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s;width:0%"></div>
           </div>
-          <span id="creditLabel2" style="font-size:11px;font-weight:700;color:var(--accent);white-space:nowrap">—</span>
-          <span id="creditProcLabel2" style="font-size:10px;color:var(--muted);white-space:nowrap;font-family:'DM Mono',monospace"></span>
+          <span id="creditLabel2" style="font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap">Sin consultar</span>
         </div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <span style="font-size:10px;color:var(--muted);white-space:nowrap">Crédito USD</span>
-          <input type="number" id="creditInit" value="20" min="1" max="999" step="1" oninput="creditSave()" style="width:48px;font-size:11px;padding:3px 6px;text-align:center;font-family:'DM Mono',monospace">
-          <button onclick="creditReset()" style="background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.3);color:var(--danger);border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;white-space:nowrap">Reset uso</button>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <label style="display:flex;align-items:center;gap:5px;margin:0;font-size:10px;color:var(--muted);white-space:nowrap">Credito total USD
+            <input type="number" id="creditBudgetUsd" value="20" min="0" max="99999" step="1" oninput="creditSave()" style="width:64px;font-size:11px;padding:3px 6px;text-align:center;font-family:'DM Mono',monospace">
+          </label>
+          <label style="display:flex;align-items:center;gap:5px;margin:0;font-size:10px;color:var(--muted);white-space:nowrap">Inicio periodo
+            <input type="date" id="creditPeriodStart" onchange="creditSave()" style="width:126px;font-size:11px;padding:3px 6px;font-family:'DM Mono',monospace">
+          </label>
+          <button onclick="creditRefresh()" style="background:rgba(129,140,248,.15);border:1px solid rgba(129,140,248,.3);color:var(--accent2);border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;white-space:nowrap">Actualizar credito</button>
         </div>
       </div>
-    </div>
 
-    <!-- Firebase Sync -->
+    <!-- Firebase Sync / Importacion localhost -->
     <div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:10px;padding:12px;margin-bottom:12px">
-      <div style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">☁️ Cuenta Google</div>
+      <div id="firebaseSyncTitle" style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Sincronizacion Firebase</div>
       <div id="dbDriveStatus" style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace;margin-bottom:10px">Estado: desconectado</div>
-      <button class="btn btn-primary" style="font-size:12px" onclick="driveToggle()">🔗 Conectar con Google</button>
+      <button id="googleConnectBtn" class="btn btn-primary" style="margin-bottom:8px;font-size:12px" onclick="driveToggle()">Conectar con Google</button>
+      <div id="firebaseActionRow" style="display:flex;gap:8px">
+        <button id="firebasePullBtn" class="btn btn-secondary" style="font-size:11px" onclick="drivePull()">Sincronizar</button>
+        <button id="firebasePushBtn" class="btn btn-secondary" style="font-size:11px" onclick="drivePush()">Forzar subida</button>
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -595,9 +632,14 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <div class="form-group"><label>Nombre del proveedor</label><input type="text" id="mpNombre" placeholder="Nombre completo"></div>
     <div class="form-group"><label>CUIT</label><input type="text" id="mpCuit" placeholder="xx-xxxxxxxx-x"></div>
     <div class="form-group"><label>Tipo de comprobante habitual</label><input type="text" id="mpTipo" placeholder="Factura A / No Válido..."></div>
-    <div class="form-group"><label>Columnas del comprobante</label><input type="text" id="mpCols" placeholder="Col1 · Col2 · Col3 · ..."></div>
+    <div class="form-group"><label>Columnas del comprobante</label><input type="text" id="mpCols" placeholder="Col1 - Col2 - Col3 - ..."></div>
     <div class="form-group"><label>Notas (opcional)</label><input type="text" id="mpNotas" placeholder="Multi-pág, etc."></div>
-    <div class="modal-actions">
+    <div id="mpAsignarWrap" style="display:none;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.25);border-radius:8px;padding:10px;margin-bottom:12px">
+      <div style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Asignar patron no identificado</div>
+      <label>Proveedor confirmado</label>
+      <select id="mpAsignarSelect" style="font-size:12px;margin-bottom:8px"></select>
+      <button class="btn btn-primary" style="font-size:12px" onclick="confirmarAsignarPatronNuevo()">Asignar a proveedor confirmado</button>
+    </div><div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeModal('modalPatron')">Cancelar</button>
       <button class="btn btn-primary" onclick="guardarPatron()">Guardar</button>
     </div>
@@ -638,8 +680,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
         <option>Pedido</option><option>Remito</option><option>Orden de Venta</option>
         <option>no definido</option>
       </select>
-    </div>
-    <div class="modal-actions">
+    </div><div class="modal-actions">
       <button class="btn btn-secondary" style="flex:.4" onclick="omitirDatosFaltantes()">Omitir</button>
       <button class="btn btn-primary" onclick="confirmarDatosFaltantes()">Confirmar →</button>
     </div>
@@ -650,8 +691,7 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 <div class="modal-overlay" id="modalLimpiar">
   <div class="modal">
     <div class="modal-title">⚠️ ¿Limpiar todos los datos?</div>
-    <div class="alert alert-warn">Se eliminarán todos los artículos. La biblioteca de proveedores se conserva.</div>
-    <div class="modal-actions">
+    <div class="alert alert-warn">Se eliminarán todos los artículos. La biblioteca de proveedores se conserva.</div><div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeModal('modalLimpiar')">Cancelar</button>
       <button class="btn btn-danger" onclick="limpiarDatos()">Sí, limpiar todo</button>
     </div>
@@ -675,10 +715,9 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
   <div class="modal">
     <div class="modal-title">🔄 Asignar proveedor</div>
     <div id="mepInfo" style="font-size:11px;color:var(--muted);margin-bottom:12px;font-family:'DM Mono',monospace;line-height:1.5"></div>
-    <div class="form-group" style="position:relative">
-      <label>Buscar en la biblioteca</label>
-      <input type="text" id="mepSearch" placeholder="Escribí para buscar proveedor..." oninput="mepOnSearch()" autocomplete="off">
-      <div id="mepDrop" style="display:none;position:absolute;left:0;right:0;top:100%;z-index:50;background:var(--surface);border:1px solid var(--accent2);border-radius:8px;max-height:200px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.5)"></div>
+    <div class="form-group">
+      <label>Asignar a proveedor confirmado</label>
+      <select id="mepProvSelect" onchange="mepSelectProvFromSelect()" style="font-size:12px"></select>
     </div>
     <div id="mepSelWrap" style="display:none;margin-bottom:12px">
       <div style="background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.3);border-radius:8px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between">
@@ -699,8 +738,15 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
       <label>CUIT</label>
       <input type="text" id="mepNuevoCuit" placeholder="xx-xxxxxxxx-x">
     </div>
-    <div id="mepAlert" class="alert alert-warn" style="display:none;margin-bottom:10px"></div>
-    <div class="modal-actions">
+    <div class="form-group">
+      <label>Tipo habitual</label>
+      <select id="mepTipo" style="font-size:12px"></select>
+    </div>
+    <div class="form-group">
+      <label>Columnas / patrón</label>
+      <select id="mepCols" style="font-size:12px"></select>
+    </div>
+    <div id="mepAlert" class="alert alert-warn" style="display:none;margin-bottom:10px"></div><div class="modal-actions">
       <button class="btn btn-secondary" style="flex:.4" onclick="closeModal('modalEditProv')">Cancelar</button>
       <button class="btn btn-primary" onclick="mepConfirmar()">✔ Asignar</button>
     </div>
@@ -720,13 +766,11 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 <!-- Modal: Firebase Sync -->
 <div class="modal-overlay" id="modalDrive">
   <div class="modal">
-    <div class="modal-title">☁️ Sincronización Firebase</div>
+    <div class="modal-title" id="driveModalTitle">Sincronizacion Firebase</div>
 
     <!-- Estado: no conectado -->
     <div id="driveViewLogin">
-      <div class="alert alert-info" style="margin-bottom:14px">
-        Iniciá sesión con <strong>somostiendaelementa@gmail.com</strong> para sincronizar datos automáticamente entre todos los dispositivos.
-      </div>
+      <div id="driveLoginInfo" class="alert alert-info" style="margin-bottom:14px">Inicia sesion con <strong>somostiendaelementa@gmail.com</strong> para sincronizar datos automaticamente entre todos los dispositivos.</div>
       <button class="btn btn-primary" style="gap:10px;margin-bottom:10px" onclick="fbSignIn()">
         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
         Continuar con Google
@@ -737,17 +781,24 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
     <!-- Estado: conectado -->
     <div id="driveViewConnected" style="display:none">
       <div class="alert alert-success" style="margin-bottom:14px">
-        ☁️ Sincronizado automáticamente como <strong id="driveUserEmail"></strong>
+        ☁️ Conectado como <strong id="driveUserEmail"></strong>
       </div>
       <div id="driveLastSync" style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:14px;text-align:center"></div>
-      <button class="btn btn-danger" style="margin-bottom:8px" onclick="driveSignOut()">Cerrar sesión</button>
-      <button class="btn btn-secondary" onclick="closeModal('modalDrive')">Cerrar</button>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <button id="driveModalPullBtn" class="btn btn-primary" onclick="drivePull()">Sincronizar ahora</button>
+        <button id="driveModalPushBtn" class="btn btn-secondary" onclick="drivePush()">Forzar subida local a Firebase</button>
+        <div class="divider"></div>
+        <button class="btn btn-danger" onclick="driveSignOut()">Cerrar sesión</button>
+        <button class="btn btn-secondary" onclick="closeModal('modalDrive')">Cerrar</button>
+      </div>
     </div>
 
     <!-- Estado: sincronizando -->
     <div id="driveViewSyncing" style="display:none;text-align:center;padding:20px 0">
       <div style="font-size:32px;margin-bottom:10px">⏳</div>
       <div id="driveSyncMsg" style="font-size:13px;color:var(--accent2)">Sincronizando...</div>
+      <div style="font-size:10px;color:var(--muted);line-height:1.5;margin:10px 0 12px">Si tarda demasiado, cerrá este aviso y volvé a intentar. No se escribe producción desde localhost.</div>
+      <button class="btn btn-secondary" style="font-size:11px" onclick="closeModal('modalDrive')">Cerrar aviso</button>
     </div>
   </div>
 </div>
@@ -791,28 +842,58 @@ tr:nth-child(even) td{background:rgba(255,255,255,.015)}
 <script>
 window.addEventListener('error', e => console.error('App error:', e.message, e.lineno));
 
-// ── ESTADO GLOBAL ──────────────────────────────────────────
+// ESTADO GLOBAL
 let rows = [];
 let importBuffer = [];
 let provFiltro = null;
 let imgFiles = [];
+let imgFileStates = [];
 let imgPendingNormalized = [];
+let imgDuplicateOmitidos = [];
+let imgProblemHistory = [];
+let excelValidationInfo = null;
 let mepRowIdx = -1, mepSelProv = null;
 let dbEditRowIdx = -1;
 let evProvSel = null, evDescSel = null;
 let varFiltroActivo = null, varProvSel = null;
 let pendingQueue = [], pendingIndex = 0, modoImport = 'acumular';
 
-const APP_VERSION = '2504260022';
+const APP_VERSION = '260023';
+const APP_VERSION_LABEL = `v.${APP_VERSION}`;
+const APP_VERSION_STORAGE = 'elementa_carga_app_version';
+const LOCAL_SEED_URL = 'seed/sesion_elementa_2026-05-08.json';
 const API_KEY_STORAGE = 'elementa_api_key';
 const COST_PER_IMAGE  = 0.009;
+const IMG_MAX_BYTES   = 4.5 * 1024 * 1024;
 const COMP_SERIAL_KEY = 'elementa_comp_serial';   // número seriado correlativo
 const COMP_FP_KEY     = 'elementa_comp_fps';      // Set de fingerprints ya cargados
+const LOAD_PROBLEM_HISTORY_KEY = 'elementa_load_problem_history';
+const AUTHORIZED_EMAIL = 'somostiendaelementa@gmail.com';
+const LOCAL_ONLY = isLocalEnvironment();
+const LOCAL_SEED_KEY = scopedStorageKey('elementa_seed_sesion_2026_05_08_loaded');
+
+function isLocalEnvironment() {
+  return ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname);
+}
+function scopedStorageKey(base) {
+  return LOCAL_ONLY ? `${base}_localhost` : base;
+}
+function rowsStorageKey() { return scopedStorageKey('comp_rows_v5'); }
+function patronesStorageKey() { return scopedStorageKey('comp_patrones_v5'); }
+function compSerialStorageKey() { return scopedStorageKey(COMP_SERIAL_KEY); }
+function compFpStorageKey() { return scopedStorageKey(COMP_FP_KEY); }
+function loadProblemHistoryStorageKey() { return scopedStorageKey(LOAD_PROBLEM_HISTORY_KEY); }
+function creditBudgetStorageKey() { return scopedStorageKey('elementa_credit_budget_usd'); }
+function creditPeriodStartStorageKey() { return scopedStorageKey('elementa_credit_period_start'); }
+function isAuthorizedUser() {
+  return !!(_fbUser && _fbUser.email === AUTHORIZED_EMAIL);
+}
 let _apiKeyMem = '';
+let _creditState = { status:'unknown', ok:false, budgetUsd:null, usedUsd:null, availableUsd:null, periodStart:null, error:'Sin consultar', checkedAt:null };
 let _compSerial = 0;      // próximo número a usar
 let _compFPs = new Set(); // fingerprints cargados en esta sesión + localStorage
 
-// ── FIREBASE CONFIG ────────────────────────────────────────
+// FIREBASE CONFIG
 const firebaseConfig = {
   apiKey:            "AIzaSyBuwp9lWju3E-_znsnArOGRnFDB4gsHSPc",
   authDomain:        "appelementa.firebaseapp.com",
@@ -829,51 +910,71 @@ let _fbAuth    = null;
 let _fbDb      = null;
 let _fbUser    = null;
 let _fbSyncing = false;
+let _fbSyncStartedAt = 0;
 let _drivePendingConflictData = null;
 
 function fbInit() {
   if (!window.firebase) { console.error('Firebase SDK no cargó'); return; }
   if (!firebase.apps || !firebase.apps.length) firebase.initializeApp(firebaseConfig);
   _fbAuth = firebase.auth();
-  _fbDb   = firebase.firestore();
+  _fbDb   = LOCAL_ONLY ? null : firebase.firestore();
   _fbAuth.onAuthStateChanged(user => {
     _fbUser = user;
     if (user) {
-      driveSetBadge('connected', user.email.split('@')[0]);
-      setTimeout(() => fbPullSilent(), 1000);
+      if (user.email !== AUTHORIZED_EMAIL) {
+        showAlertErr(`Cuenta Google no autorizada: ${user.email}. Usa ${AUTHORIZED_EMAIL}.`);
+        _fbAuth.signOut();
+        _fbUser = null;
+        driveSetBadge('error', 'Cuenta no autorizada');
+        semaforoRender();
+        return;
+      }
+      driveSetBadge('connected', LOCAL_ONLY ? 'Prueba local' : user.email.split('@')[0]);
+      if (!LOCAL_ONLY) setTimeout(() => fbPullSilent(), 1000);
     } else {
-      driveSetBadge('offline', 'Firebase');
+      driveSetBadge(LOCAL_ONLY ? 'connected' : 'offline', LOCAL_ONLY ? 'Prueba local' : 'Firebase');
     }
     semaforoRender();
+    renderLocalTools();
   });
+  renderLocalTools();
+  processGoogleRedirectResult();
 }
 
-// ── COMPAT aliases ─────────────────────────────────────────
-function driveTokenOk()  { return !!_fbUser; }
+// COMPAT aliases
+function driveTokenOk()  { return LOCAL_ONLY ? true : isAuthorizedUser(); }
 function driveAutoPush() {
-  if (!_fbUser) return;
+  if (LOCAL_ONLY || !isAuthorizedUser()) return;
   clearTimeout(window._drivePushTimer);
   window._drivePushTimer = setTimeout(() => fbPushSilent(), 3000);
 }
 
-// ── BADGE / STATUS ─────────────────────────────────────────
+// BADGE / STATUS
 function driveSetBadge(state, label) {
   const statusEl = document.getElementById('dbDriveStatus');
   if (statusEl) {
-    const msgs = { connected:'Conectado como '+(_fbUser?_fbUser.email:''), syncing:'Sincronizando...', error:'Error de sincronización', offline:'Desconectado' };
+    const localText = _fbUser ? `Modo localhost - Google conectado para lectura (${_fbUser.email})` : 'Modo prueba local';
+    const connectedText = LOCAL_ONLY ? localText : 'Conectado como '+(_fbUser?_fbUser.email:'');
+    const msgs = {
+      connected: connectedText,
+      syncing: LOCAL_ONLY ? 'Importando produccion a localhost...' : 'Sincronizando...',
+      error: LOCAL_ONLY ? (label || 'Modo localhost - ultimo intento fallido') : 'Error de sincronizacion',
+      offline: LOCAL_ONLY ? 'Modo prueba local' : 'Desconectado'
+    };
     statusEl.textContent = 'Estado: '+(msgs[state]||state);
-    statusEl.style.color = state==='connected'?'var(--accent)':state==='syncing'?'var(--accent2)':state==='error'?'var(--danger)':'var(--muted)';
+    statusEl.style.color = state==='connected'?'var(--accent)':state==='syncing'?'var(--accent2)':state==='error'?(LOCAL_ONLY?'var(--warn)':'var(--danger)'):'var(--muted)';
   }
   semaforoRender();
+  renderLocalTools();
 }
 
-// ── INIT ───────────────────────────────────────────────────
+// INIT
 function driveInit() {
   // Auth state manejado por onAuthStateChanged arriba
   // Si ya hay sesión activa Firebase la restaura automáticamente
 }
 
-// ── SERIALIZAR ─────────────────────────────────────────────
+// SERIALIZAR
 function driveSerialize() {
   return {
     version:    APP_VERSION,
@@ -883,17 +984,17 @@ function driveSerialize() {
     compSerial: _compSerial,
     compFPs:    [..._compFPs],
     apiKey:     _apiKeyMem || '',
-    creditUsed: parseFloat(localStorage.getItem('elementa_credit_used'))||0,
-    creditProc: parseInt(localStorage.getItem('elementa_credit_proc'))||0,
+    creditBudgetUsd: Number.isFinite(parseFloat(localStorage.getItem(creditBudgetStorageKey()))) ? parseFloat(localStorage.getItem(creditBudgetStorageKey())) : 20,
+    creditPeriodStart: localStorage.getItem(creditPeriodStartStorageKey())||creditDefaultPeriodStart(),
   };
 }
 
-// ── APLICAR datos de Firebase (reemplaza local completamente) ─
-function fbApply(data) {
-  // Firebase es la fuente de verdad — reemplaza todo
-  rows        = data.rows || [];
-  _compSerial = Math.max(_compSerial, data.compSerial || 0);
-  if (data.compFPs) data.compFPs.forEach(fp => _compFPs.add(fp));
+// APLICAR datos de Firebase
+function driveApply(data) {
+  completeFechaCarga(data);
+  if (data.rows)       rows = data.rows;
+  if (data.compSerial) _compSerial = Math.max(_compSerial, data.compSerial);
+  if (data.compFPs)    data.compFPs.forEach(fp => _compFPs.add(fp));
   if (data.patrones) {
     data.patrones.forEach(p => {
       const idx = patrones.findIndex(x => x.nombre.toUpperCase() === p.nombre.toUpperCase());
@@ -904,55 +1005,83 @@ function fbApply(data) {
   if (data.apiKey && data.apiKey.startsWith('sk-ant-') && !_apiKeyMem) {
     _apiKeyMem = data.apiKey;
     try { localStorage.setItem(API_KEY_STORAGE, data.apiKey); } catch(e) {}
-    try { document.getElementById('apiKeyInput').value = data.apiKey; } catch(e) {}
+    try { document.getElementById('apiKeyInput').value = ''; } catch(e) {}
     apiKeySetStatus(true);
+    showAlertSuccess('✅ API key sincronizada desde Firebase.');
   }
-  if (data.creditUsed !== undefined) {
-    const localU = parseFloat(localStorage.getItem('elementa_credit_used'))||0;
-    if (parseFloat(data.creditUsed) > localU) { localStorage.setItem('elementa_credit_used', data.creditUsed); creditRender(); }
+  if (data.creditBudgetUsd !== undefined) {
+    localStorage.setItem(creditBudgetStorageKey(), parseFloat(data.creditBudgetUsd)||20);
   }
-  if (data.creditProc !== undefined) {
-    const localP = parseInt(localStorage.getItem('elementa_credit_proc'))||0;
-    if (parseInt(data.creditProc) > localP) localStorage.setItem('elementa_credit_proc', data.creditProc);
+  if (data.creditPeriodStart) {
+    localStorage.setItem(creditPeriodStartStorageKey(), data.creditPeriodStart);
   }
+  creditLoad();
   migrarIdComprobante();
   autoSave();
   renderAll();
 }
 
-// ── MERGE solo para agregar comprobantes nuevos locales a Firebase ──
-// Se usa SOLO cuando el usuario carga un comprobante nuevo en este dispositivo
-function fbMergeAndPush(localNewRows) {
-  // Agregar solo las filas nuevas que no están en Firebase (por _fp o _idComp)
-  const existingFPs  = new Set(rows.map(r => r._fp).filter(Boolean));
-  const existingIds  = new Set(rows.map(r => r._idComp).filter(Boolean));
-  const nuevos = localNewRows.filter(r => {
+// MERGE
+function driveMerge(fbData) {
+  completeFechaCarga(fbData);
+  const fbRows = fbData.rows || [];
+  if (!fbRows.length) return 0;
+  const existingFPs = new Set(rows.map(r => r._fp).filter(Boolean));
+  const existingIds = new Set(rows.map(r => r._idComp).filter(Boolean));
+  const nuevos = fbRows.filter(r => {
     if (r._fp     && existingFPs.has(r._fp))    return false;
     if (r._idComp && existingIds.has(r._idComp)) return false;
     return true;
   });
-  if (nuevos.length) {
-    rows = [...rows, ...nuevos];
-    migrarIdComprobante();
-    autoSave();
-    renderAll();
-    // Subir a Firebase con los datos combinados
-    fbPushSilent();
+  if (nuevos.length) { rows = [...rows, ...nuevos]; migrarIdComprobante(); }
+  if (fbData.compSerial) _compSerial = Math.max(_compSerial, fbData.compSerial);
+  if (fbData.compFPs)    fbData.compFPs.forEach(fp => _compFPs.add(fp));
+  if (fbData.patrones) {
+    fbData.patrones.forEach(p => {
+      const idx = patrones.findIndex(x => x.nombre.toUpperCase() === p.nombre.toUpperCase());
+      if (idx >= 0) patrones[idx] = Object.assign({}, patrones[idx], p);
+      else patrones.push(p);
+    });
   }
+  if (fbData.apiKey && fbData.apiKey.startsWith('sk-ant-') && !_apiKeyMem) {
+    _apiKeyMem = fbData.apiKey;
+    try { localStorage.setItem(API_KEY_STORAGE, fbData.apiKey); } catch(e) {}
+    try { document.getElementById('apiKeyInput').value = ''; } catch(e) {}
+    apiKeySetStatus(true);
+  }
+  if (fbData.creditBudgetUsd !== undefined) {
+    localStorage.setItem(creditBudgetStorageKey(), parseFloat(fbData.creditBudgetUsd)||20);
+  }
+  if (fbData.creditPeriodStart) {
+    localStorage.setItem(creditPeriodStartStorageKey(), fbData.creditPeriodStart);
+  }
+  creditLoad();
+  autoSave();
+  renderAll();
+  return nuevos.length;
 }
 
-// ── PUSH a Firestore ───────────────────────────────────────
+// PUSH a Firestore
 async function drivePush() {
-  if (!_fbUser) { driveToggle(); return; }
+  if (LOCAL_ONLY) {
+    autoSave();
+    showAlertSuccess('Modo localhost: datos guardados solo en este navegador. No se escribio produccion.');
+    return;
+  }
+  if (!isAuthorizedUser()) { driveToggle(); return; }
+  driveSyncStart('Subiendo datos a Firebase...');
   try {
     await fbPushInternal();
-    showAlertSuccess('✅ Datos subidos a Firebase.');
-  } catch(e) { showAlertErr('Error al subir: ' + e.message); }
+    driveSyncEnd();
+    showAlertSuccess('✅ Datos subidos correctamente.');
+  } catch(e) { driveSyncError('Error al subir: ' + e.message); }
 }
 
 async function fbPushInternal() {
-  if (!_fbDb) return;
+  if (LOCAL_ONLY) throw new Error('Modo localhost: escritura a produccion bloqueada.');
+  if (!_fbDb || !isAuthorizedUser()) throw new Error('Cuenta Google no autorizada.');
   const data = driveSerialize();
+  // Firestore tiene límite de 1MB por doc — guardamos rows en chunks si es necesario
   const [part1, part2] = splitRows(data.rows);
   const docData = { ...data, rows: part1, rows2: part2, updatedAt: firebase.firestore.FieldValue.serverTimestamp() };
   await _fbDb.doc(FB_DOC).set(docData);
@@ -960,64 +1089,60 @@ async function fbPushInternal() {
 }
 
 async function fbPushSilent() {
-  if (!_fbUser || !_fbDb || _fbSyncing) return;
+  if (LOCAL_ONLY || !isAuthorizedUser() || _fbSyncing) return;
   _fbSyncing = true;
   try {
     await fbPushInternal();
     driveSetBadge('connected', _fbUser.email.split('@')[0]);
   } catch(e) {
-    console.warn('FB push falló:', e.message);
+    console.warn('FB push silencioso falló:', e.message);
+    driveSetBadge('error','Error');
   } finally { _fbSyncing = false; }
 }
 const drivePushSilent = fbPushSilent;
 
-// ── PULL desde Firestore — Firebase manda, reemplaza local ─
+// PULL desde Firestore: en produccion Firebase siempre manda.
 async function fbSyncCore() {
-  // Regla principal: NUNCA pisar Firebase con menos datos que los que ya tiene
-  const snap = await _fbDb.doc(FB_DOC).get();
-
-  if (!snap.exists) {
-    // Firebase vacío → subir local solo si hay datos
-    if (rows.length > 0) await fbPushInternal();
-    return;
-  }
+  if (!_fbDb || !isAuthorizedUser()) throw new Error('Cuenta Google no autorizada.');
+  const snap = await withTimeout(_fbDb.doc(FB_DOC).get({ source: 'server' }), 30000, 'lectura Firestore');
+  if (!snap.exists) throw new Error('No existe el documento productivo elementa/data.');
 
   const fbData = snap.data();
-  fbData.rows = [...(fbData.rows||[]), ...(fbData.rows2||[])];
+  fbData.rows = [...(fbData.rows || []), ...(fbData.rows2 || [])];
   delete fbData.rows2;
+  if (!fbData.rows.length) throw new Error('Firestore devolvio produccion sin registros.');
 
-  const fbCount    = fbData.rows.length;
-  const localCount = rows.length;
-
-  if (fbCount > localCount) {
-    // Firebase tiene MÁS datos → siempre reemplazar local
-    fbApply(fbData);
-    localStorage.setItem(DRIVE_LASTSYNC_KEY, Date.now());
-  } else if (localCount > fbCount) {
-    // Local tiene MÁS datos → subir a Firebase
-    await fbPushInternal();
-  } else {
-    // Igual cantidad → tomar Firebase como referencia (más reciente en la nube)
-    fbApply(fbData);
-    localStorage.setItem(DRIVE_LASTSYNC_KEY, Date.now());
-  }
+  const fbCount = fbData.rows.length;
+  driveApply(fbData);
+  localStorage.setItem(DRIVE_LASTSYNC_KEY, Date.now());
+  return fbCount ? 'pull-firebase' : 'pull-empty';
 }
 
 async function drivePull() {
-  if (!_fbUser || !_fbDb) return;
-  try { await fbSyncCore(); } catch(e) { console.warn('sync error:', e.message); }
+  if (LOCAL_ONLY) {
+    await importProductionToLocal();
+    return;
+  }
+  if (!isAuthorizedUser()) { driveToggle(); return; }
+  driveSyncStart('Sincronizando con Firebase...');
+  try {
+    const result = await fbSyncCore();
+    driveSyncEnd();
+    showAlertSuccess(`Sync completo (${result}). Total: ${rows.length}`);
+  } catch(e) { driveSyncError('Error: ' + e.message); }
 }
 
 async function fbPullSilent() {
-  if (!_fbUser || !_fbDb || _fbSyncing) return;
+  if (LOCAL_ONLY || !isAuthorizedUser() || _fbSyncing) return;
   _fbSyncing = true;
-  driveSetBadge('syncing', 'Sync...');
+  driveSetBadge('syncing','Sync...');
   try {
     await fbSyncCore();
     driveSetBadge('connected', _fbUser.email.split('@')[0]);
+    localStorage.setItem(DRIVE_LASTSYNC_KEY, Date.now());
   } catch(e) {
-    driveSetBadge('error', 'Error');
-    console.warn('FB sync falló:', e.message);
+    driveSetBadge('error','Error');
+    console.warn('FB pull silencioso falló:', e.message);
   } finally { _fbSyncing = false; }
 }
 const drivePullSilent = fbPullSilent;
@@ -1029,15 +1154,232 @@ function splitRows(arr) {
   return arr.length > 800 ? [arr.slice(0, mid), arr.slice(mid)] : [arr, []];
 }
 
-// ── LOGIN / LOGOUT ─────────────────────────────────────────
+function renderLocalTools() {
+  const box = document.getElementById('localTools');
+  const title = document.getElementById('firebaseSyncTitle');
+  const connectBtn = document.getElementById('googleConnectBtn');
+  const pullBtn = document.getElementById('firebasePullBtn');
+  const pushBtn = document.getElementById('firebasePushBtn');
+  const actionRow = document.getElementById('firebaseActionRow');
+  const localImportBtn = document.getElementById('localImportBtn');
+  const modalPullBtn = document.getElementById('driveModalPullBtn');
+  const modalPushBtn = document.getElementById('driveModalPushBtn');
+  if (box) box.style.display = 'none';
+  if (LOCAL_ONLY) {
+    if (title) title.textContent = 'Modo localhost - lectura Firebase';
+    if (connectBtn) {
+      connectBtn.textContent = _fbUser ? 'Importar produccion a localhost' : 'Conectar Google e importar produccion';
+      connectBtn.onclick = importProductionToLocal;
+      connectBtn.disabled = false;
+    }
+    if (actionRow) actionRow.style.display = 'none';
+    if (pullBtn) pullBtn.style.display = 'none';
+    if (pushBtn) pushBtn.style.display = 'none';
+    if (localImportBtn) {
+      localImportBtn.style.display = 'none';
+      localImportBtn.textContent = 'Importar produccion a localhost';
+    }
+    if (modalPullBtn) modalPullBtn.textContent = 'Importar produccion a localhost';
+    if (modalPushBtn) modalPushBtn.style.display = 'none';
+  } else {
+    if (title) title.textContent = 'Sincronizacion Firebase';
+    if (connectBtn) {
+      connectBtn.textContent = 'Conectar con Google';
+      connectBtn.onclick = driveToggle;
+      connectBtn.disabled = false;
+    }
+    if (actionRow) actionRow.style.display = 'flex';
+    if (pullBtn) pullBtn.textContent = 'Sincronizar';
+    if (pushBtn) pushBtn.style.display = '';
+    if (localImportBtn) localImportBtn.style.display = '';
+    if (modalPullBtn) modalPullBtn.textContent = 'Sincronizar ahora';
+    if (modalPushBtn) modalPushBtn.style.display = '';
+  }
+}
+
+function completeFechaCarga(data, fallback) {
+  const fecha = fallback || localDateStr();
+  const list = Array.isArray(data) ? data : (data && Array.isArray(data.rows) ? data.rows : []);
+  list.forEach(r => {
+    if (r && !r._fechaCarga) r._fechaCarga = fecha;
+  });
+  return data;
+}
+
+function normalizeProductionData(raw) {
+  const data = Object.assign({}, raw || {});
+  const rows1 = Array.isArray(data.rows) ? data.rows : [];
+  const rows2 = Array.isArray(data.rows2) ? data.rows2 : [];
+  data.rows = [...rows1, ...rows2];
+  delete data.rows2;
+  completeFechaCarga(data);
+  return data;
+}
+
+function makeGoogleProvider() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ login_hint: AUTHORIZED_EMAIL, prompt: 'select_account' });
+  return provider;
+}
+
+function firebaseAuthMessage(e) {
+  const code = e && e.code ? e.code : '';
+  const msg = e && e.message ? e.message : String(e || 'Error desconocido');
+  if (code === 'auth/unauthorized-domain') return 'Dominio no autorizado en Firebase Auth. Agrega localhost en Authentication > Settings > Authorized domains.';
+  if (code === 'auth/popup-blocked') return 'Edge bloqueo la ventana emergente. Habilita popups para localhost o usa el flujo de redireccion.';
+  if (code === 'auth/popup-closed-by-user') return 'Se cerro la ventana de Google antes de completar la conexion.';
+  if (code === 'auth/cancelled-popup-request') return 'Ya habia una conexion Google en curso. Espera unos segundos y vuelve a intentar.';
+  if (code === 'auth/network-request-failed') return 'No se pudo contactar Firebase/Google. Revisa internet y vuelve a intentar.';
+  if (code === 'auth/operation-not-supported-in-this-environment') return 'Este navegador no permite el flujo popup. Se necesita redireccion Google habilitada.';
+  if (code === 'permission-denied') return `Firebase no permitio leer produccion con esta sesion. Verifica que estes conectado como ${AUTHORIZED_EMAIL} y que las reglas permitan lectura.`;
+  return msg;
+}
+
+async function ensureGoogleAuth(pendingAction) {
+  if (!_fbAuth) throw new Error('Firebase Auth no inicializado.');
+  if (isAuthorizedUser()) return _fbUser;
+  const provider = makeGoogleProvider();
+  const fallbackToRedirect = async () => {
+    if (pendingAction) sessionStorage.setItem('elementa_pending_google_action', pendingAction);
+    await _fbAuth.signInWithRedirect(provider);
+    return null;
+  };
+  try {
+    const result = await withTimeout(_fbAuth.signInWithPopup(provider), 12000, 'conexion Google');
+    if (result && result.user) _fbUser = result.user;
+    if (_fbUser && _fbUser.email !== AUTHORIZED_EMAIL) {
+      await _fbAuth.signOut();
+      _fbUser = null;
+      throw new Error(`Cuenta Google no autorizada: usa ${AUTHORIZED_EMAIL}.`);
+    }
+    renderLocalTools();
+    return _fbUser;
+  } catch(e) {
+    const code = e && e.code ? e.code : '';
+    if (!code && e && e.message && e.message.includes('Cuenta Google no autorizada')) throw e;
+    if (['auth/popup-blocked', 'auth/popup-closed-by-user', 'auth/cancelled-popup-request', 'auth/operation-not-supported-in-this-environment'].includes(code) || !code) {
+      return fallbackToRedirect();
+    }
+    throw e;
+  }
+}
+
+async function processGoogleRedirectResult() {
+  if (!_fbAuth) return;
+  try {
+    const result = await _fbAuth.getRedirectResult();
+    if (result && result.user) {
+      _fbUser = result.user;
+      if (_fbUser.email !== AUTHORIZED_EMAIL) {
+        showAlertErr(`Cuenta Google no autorizada: ${_fbUser.email}. Usa ${AUTHORIZED_EMAIL}.`);
+        await _fbAuth.signOut();
+        return;
+      }
+      driveSetBadge('connected');
+      renderLocalTools();
+      showAlertSuccess('Cuenta Google conectada.');
+      const pending = sessionStorage.getItem('elementa_pending_google_action');
+      sessionStorage.removeItem('elementa_pending_google_action');
+      if (pending === 'import-production' && LOCAL_ONLY) setTimeout(() => importProductionToLocal(), 250);
+      if ((pending === 'pull-production' || pending === 'sync-production') && !LOCAL_ONLY) setTimeout(() => drivePull(), 250);
+    }
+  } catch(e) {
+    driveSetBadge(LOCAL_ONLY ? 'connected' : 'error', LOCAL_ONLY ? undefined : 'Error');
+    showAlertErr('Error al completar conexion Google: ' + firebaseAuthMessage(e));
+  }
+}
+
+function formatLocalFilenameDate(d) {
+  const p = n => String(n).padStart(2, '0');
+  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}`;
+}
+
+function downloadBlob(blob, filename) {
+  const a = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function withTimeout(promise, ms, label) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`${label} tardo mas de ${Math.round(ms/1000)} segundos.`)), ms);
+    Promise.resolve(promise)
+      .then(value => { clearTimeout(timer); resolve(value); })
+      .catch(err => { clearTimeout(timer); reject(err); });
+  });
+}
+
+async function readProductionDataOnce() {
+  if (!LOCAL_ONLY) throw new Error('Esta accion solo esta disponible en localhost.');
+  if (!isAuthorizedUser()) {
+    driveSyncStart(`Abriendo Google para leer produccion con ${AUTHORIZED_EMAIL}...`);
+    await withTimeout(ensureGoogleAuth('import-production'), 30000, 'La conexion con Google');
+    if (!isAuthorizedUser()) throw new Error(`Conecta la cuenta ${AUTHORIZED_EMAIL} para leer produccion.`);
+  }
+  driveSyncStart('Validando sesion Google...');
+  await withTimeout(_fbAuth.currentUser?.getIdToken(true), 20000, 'La validacion de Google');
+  driveSyncStart('Leyendo elementa/data desde Firestore...');
+  const db = firebase.firestore();
+  const snap = await withTimeout(db.doc(FB_DOC).get({ source:'server' }), 30000, 'La lectura de Firestore');
+  if (!snap.exists) throw new Error('No existe base de datos productiva para importar.');
+  const data = normalizeProductionData(snap.data());
+  if (!data.rows.length) {
+    throw new Error(`La lectura de ${FB_DOC} no trajo registros. Revisa que la base productiva actual guarde rows/rows2 en ese documento.`);
+  }
+  return data;
+}
+
+async function importProductionToLocal() {
+  if (_fbSyncing) {
+    const stale = _fbSyncStartedAt && (Date.now() - _fbSyncStartedAt > 45000);
+    if (!stale) {
+      showAlert('Ya hay una importacion en curso. Espera a que termine o cerrá el aviso y reintentá.');
+      return;
+    }
+    _fbSyncing = false;
+    _fbSyncStartedAt = 0;
+  }
+  _fbSyncing = true;
+  hideAlert();
+  driveSyncStart('Importando datos de produccion a localhost...');
+  try {
+    const data = await readProductionDataOnce();
+    driveApply(data);
+    driveSyncEnd();
+    showAlertSuccess(`Produccion importada a localhost: ${rows.length} registros disponibles para prueba.`);
+  } catch(e) {
+    driveSyncError('Error al importar produccion: ' + firebaseAuthMessage(e));
+  } finally {
+    _fbSyncing = false;
+  }
+}
+
+async function backupProductionToFile() {
+  try {
+    const data = await readProductionDataOnce();
+    const stamp = formatLocalFilenameDate(new Date());
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    downloadBlob(blob, `elementa_carga_backup_produccion_${stamp}.json`);
+    showAlertSuccess('Backup de produccion generado sin modificar datos.');
+  } catch(e) {
+    showAlertErr('Error al generar backup: ' + e.message);
+  }
+}
+
+// LOGIN / LOGOUT
 async function fbSignIn() {
   try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    provider.setCustomParameters({ login_hint: 'somostiendaelementa@gmail.com' });
-    await _fbAuth.signInWithPopup(provider);
+    const user = await ensureGoogleAuth(LOCAL_ONLY ? 'import-production' : 'pull-production');
     closeModal('modalDrive');
+    if (user && !LOCAL_ONLY) await drivePull();
   } catch(e) {
-    showAlertErr('Error al conectar con Google: ' + e.message);
+    driveSetBadge(LOCAL_ONLY ? 'connected' : 'error', LOCAL_ONLY ? undefined : 'Error');
+    showAlertErr('Error al conectar con Google: ' + firebaseAuthMessage(e));
   }
 }
 
@@ -1048,8 +1390,15 @@ function driveSignOut() {
   showAlertSuccess('Sesión cerrada.');
 }
 
-// ── TOGGLE MODAL ───────────────────────────────────────────
+// TOGGLE MODAL
 function driveToggle() {
+  renderLocalTools();
+  const modalTitle = document.getElementById('driveModalTitle');
+  const loginInfo = document.getElementById('driveLoginInfo');
+  if (modalTitle) modalTitle.textContent = LOCAL_ONLY ? 'Modo localhost - Google' : 'Sincronizacion Firebase';
+  if (loginInfo) loginInfo.innerHTML = LOCAL_ONLY
+    ? `Conecta <strong>${AUTHORIZED_EMAIL}</strong> solo para leer produccion e importarla a localhost. No se escriben datos en la nube.`
+    : `Inicia sesion con <strong>${AUTHORIZED_EMAIL}</strong> para sincronizar datos automaticamente entre todos los dispositivos.`;
   if (_fbUser) {
     document.getElementById('driveViewLogin').style.display     = 'none';
     document.getElementById('driveViewConnected').style.display = 'block';
@@ -1068,7 +1417,18 @@ function driveToggle() {
 }
 
 function driveSyncStart(msg) {
+  _fbSyncStartedAt = Date.now();
   driveSetBadge('syncing','Sync...');
+  const statusEl = document.getElementById('dbDriveStatus');
+  if (statusEl) {
+    statusEl.textContent = 'Estado: ' + msg;
+    statusEl.style.color = 'var(--accent2)';
+  }
+  const connectBtn = document.getElementById('googleConnectBtn');
+  if (connectBtn && LOCAL_ONLY) {
+    connectBtn.disabled = true;
+    connectBtn.textContent = 'Importando...';
+  }
   document.getElementById('driveViewLogin').style.display     = 'none';
   document.getElementById('driveViewConnected').style.display = 'none';
   document.getElementById('driveViewSyncing').style.display   = 'block';
@@ -1080,12 +1440,18 @@ function driveSyncEnd() {
   driveSetBadge('connected', _fbUser ? _fbUser.email.split('@')[0] : 'Firebase');
   closeModal('modalDrive');
   localStorage.setItem(DRIVE_LASTSYNC_KEY, Date.now());
+  _fbSyncStartedAt = 0;
+  renderLocalTools();
 }
 
 function driveSyncError(msg) {
-  driveSetBadge('error','Error');
+  if (LOCAL_ONLY) driveSetBadge('connected');
+  else driveSetBadge('error','Error');
   closeModal('modalDrive');
   showAlertErr('Sync: ' + msg);
+  _fbSyncing = false;
+  _fbSyncStartedAt = 0;
+  renderLocalTools();
 }
 
 function driveShowReauth() {
@@ -1095,37 +1461,44 @@ function driveShowReauth() {
 
 async function driveResolveConflicto(opcion) {
   closeModal('modalDriveConflicto');
-  if (opcion==='drive' || opcion==='merge') {
-    await fbPullSilent();
+  const fbData = _drivePendingConflictData;
+  _drivePendingConflictData = null;
+  if (opcion==='drive') {
+    driveApply(fbData);
+    await fbPushSilent();
     showAlertSuccess('✅ Datos de Firebase aplicados.');
+  } else if (opcion==='local') {
+    await drivePush();
   } else {
-    await fbPushInternal();
-    showAlertSuccess('✅ Datos locales subidos a Firebase.');
+    const nuevos = driveMerge(fbData);
+    await fbPushSilent();
+    showAlertSuccess('✅ Combinados: '+nuevos+' artículos nuevos.');
   }
 }
 
 function driveCheckConflict(fbData) {
-  // No se usa — Firebase siempre manda
+  driveMerge(fbData);
+  fbPushSilent();
 }
 
-// ── TOKEN helper (no usado con Firebase pero mantiene compatibilidad) ─
+// TOKEN helper (no usado con Firebase pero mantiene compatibilidad)
 function ghSaveToken() { closeModal('modalDrive'); }
-// ── GUARDAR TOKEN desde UI ────────────────────────────────
+// GUARDAR TOKEN desde UI
 
 
 
 
 
 
-// ── SISTEMA DE ID DE COMPROBANTE ──────────────────────────
+// SISTEMA DE ID DE COMPROBANTE
 // Formato: NNNN-XXXXXX  (ej: 0003-162647)
 // NNNN   = seriado correlativo único global (nunca se reinicia)
 // XXXXXX = últimos 6 chars del nombre de archivo (sin extensión) o del proveedor
 
 function compSerialLoad() {
   try {
-    _compSerial = parseInt(localStorage.getItem(COMP_SERIAL_KEY)) || 0;
-    const fps   = localStorage.getItem(COMP_FP_KEY);
+    _compSerial = parseInt(localStorage.getItem(compSerialStorageKey())) || 0;
+    const fps   = localStorage.getItem(compFpStorageKey());
     _compFPs    = fps ? new Set(JSON.parse(fps)) : new Set();
     // También poblar desde rows existentes (migración de datos sin _fp)
     rows.forEach(r => { if (r._fp) _compFPs.add(r._fp); });
@@ -1134,8 +1507,8 @@ function compSerialLoad() {
 
 function compSerialSave() {
   try {
-    localStorage.setItem(COMP_SERIAL_KEY, _compSerial);
-    localStorage.setItem(COMP_FP_KEY, JSON.stringify([..._compFPs]));
+    localStorage.setItem(compSerialStorageKey(), _compSerial);
+    localStorage.setItem(compFpStorageKey(), JSON.stringify([..._compFPs]));
   } catch(e) {}
 }
 
@@ -1186,7 +1559,7 @@ function compRegisterFP(fp) {
   compSerialSave();
 }
 
-// ── MIGRACIÓN: asignar _idComp a rows sin él ──────────────
+// MIGRACIÓN: asignar _idComp a rows sin él
 // Agrupa por proveedor+fecha+tipo (= un comprobante lógico)
 // y asigna un ID seriado único a cada grupo.
 function migrarIdComprobante() {
@@ -1222,39 +1595,39 @@ function compInfoFromRows(fp) {
   return { provs, fecha, tipo, idComp, items: prevRows.length, total };
 }
 
-// ── BIBLIOTECA DE PROVEEDORES ──────────────────────────────
+// BIBLIOTECA DE PROVEEDORES
 let patrones = [
-  {id:'P01',nombre:'ALLDIET',cuit:'27-33671046-5',tipo:'No Válido como Factura / Presupuesto',cols:'Artículo · Cantidad · Descripción · Precio · Descuento · Total',notas:'',nuevo:false},
-  {id:'P02',nombre:'GREEN & CO',cuit:'30-71543538-8',tipo:'Factura A',cols:'Artículo · Descripción · Cantidad · Precio · Total',notas:'Campo "Transporte" al pie: ignorar',nuevo:false},
-  {id:'P03',nombre:'MIXME SRL',cuit:'30-71798955-0',tipo:'Orden de Venta',cols:'Producto/Servicio · Cantidad · Precio unit. · Desc. · Subtotal final',notas:'',nuevo:false},
-  {id:'P04',nombre:'SAGRADA MADRE (Vrinda Import)',cuit:'30-71486673-3',tipo:'Factura A / No Válido como Factura / Presupuesto',cols:'Descripción · Cantidad · Precio Unit. · %IVA · Importe',notas:'',nuevo:false},
-  {id:'P05',nombre:'TIENDA VIDA PLUS (TIMOS SA)',cuit:'30-65279-5990',tipo:'Factura A / No Válido como Factura',cols:'Cantidad · Código · Descripción · Precio unit. · IVA · Bonif. · Importe',notas:'',nuevo:false},
-  {id:'P06',nombre:'CASA VEGANA (Vegan Nature SA)',cuit:'30-71513-4604',tipo:'No Válido como Factura',cols:'Cantidad · Código · Descripción · Precio unit. · IVA · Bonif. · Importe',notas:'',nuevo:false},
-  {id:'P07',nombre:'NATURAL GREEN',cuit:'20-25540-6176',tipo:'No Válido como Comprobante Fiscal',cols:'Cantidad · Código · Descripción · Precio unit. · Bonif. · Subtotal',notas:'',nuevo:false},
-  {id:'P08',nombre:'BEATRIZ COSMÉTICOS SRL',cuit:'30-68182575-0',tipo:'Factura A / Presupuesto',cols:'Artículo · Cantidad · Detalle · %IVA · Precio · Importe',notas:'',nuevo:false},
-  {id:'P09',nombre:'CHEZ MOMO (Placeres Responsables SRL)',cuit:'30-71707512-5',tipo:'Nota de Pedido',cols:'Descripción · Cantidad · Precio · Subtotal',notas:'',nuevo:false},
-  {id:'P10',nombre:'NEW DAY',cuit:'30-71111472-2',tipo:'No Válido como Factura / Recibo X',cols:'Cantidad · Producto · Precio · Descuento · IVA · Total',notas:'',nuevo:false},
-  {id:'P11',nombre:'EXPRONAT SH',cuit:'30-71111472-2',tipo:'Presupuesto / No Válido como Factura',cols:'Cantidad · Producto · Precio · Descuento · IVA · Total',notas:'',nuevo:false},
-  {id:'P12',nombre:'MEKA HERBAL',cuit:'no encontrado',tipo:'Pedido',cols:'Código · Descripción · Cantidad · Precio unit. · Total',notas:'',nuevo:false},
-  {id:'P13',nombre:'NATFRUT',cuit:'30-71219592-0',tipo:'Nota de Pedido / No Válido como Factura',cols:'Cod. · Producto · Cant. · Unid. · Importe · Total',notas:'',nuevo:false},
-  {id:'P14',nombre:'MASA MADRE',cuit:'30-71936879-0',tipo:'Remito',cols:'Código · Cantidad · Descripción · P.Uni · Total',notas:'',nuevo:false},
-  {id:'P15',nombre:'HUEVO DE CAMPO',cuit:'30-70704936-3',tipo:'Remito',cols:'Cantidad · Detalle · Precio · Neto',notas:'',nuevo:false},
-  {id:'P16',nombre:'IL SOLE',cuit:'30-71232120-9',tipo:'Nota de Pedido',cols:'Unid. · Producto · Valor S/IVA · Neto · IVA',notas:'',nuevo:false},
-  {id:'P17',nombre:'COPRALSA S.R.L.',cuit:'30-71841279-6',tipo:'Factura A',cols:'Código · Descripción · Unid · P.Neto · Bonif · P.C/DESC · Total Neto',notas:'',nuevo:false},
-  {id:'P18',nombre:'SEMILLAVIVA',cuit:'20-27548169-7',tipo:'Factura A / No Válido como Factura',cols:'Cantidad · Código · Descripción · Precio unitario · IVA · Bonif. · Importe',notas:'',nuevo:false},
-  {id:'P19',nombre:'TIERRA FLORIDA SAS',cuit:'30-71869781-2',tipo:'No Válido como Factura / Presupuesto',cols:'Código · Descripción · Cantidad · P.U. · Importe',notas:'',nuevo:false},
-  {id:'P20',nombre:'GRUPO UTOPÍA',cuit:'30-71683506-1',tipo:'No Válido',cols:'Cantidad · Descripción · Total',notas:'Sin precio unitario; calcular precioUnit = Total/Cantidad',nuevo:false},
-  {id:'P21',nombre:'KALANI S.A.',cuit:'30-71576698-8',tipo:'Factura A / Presupuesto / Remito / Nota de Crédito A',cols:'Artículo · Descripción · Cantidad · Precio · % Des. · Monto Unitario · Monto',notas:'',nuevo:false},
-  {id:'P22',nombre:'M&M',cuit:'30-71404158-0',tipo:'Orden de Venta',cols:'Producto/Servicio · Cantidad · Precio Unitario · Desc. unitario s/imp · Subtotal final',notas:'',nuevo:false},
-  {id:'P23',nombre:'MOLENS',cuit:'no encontrado',tipo:'Presupuesto',cols:'Descripción · Cantidad · Precio unit. · Total',notas:'',nuevo:false},
-  {id:'P24',nombre:'RULEY DISTRIBUIDORA',cuit:'no encontrado',tipo:'No Válido como Factura',cols:'Descripción Artículo · Cantidad · P. Unitario · Importe',notas:'',nuevo:false},
-  {id:'P25',nombre:'COPRALSA (comprobante interno)',cuit:'no encontrado',tipo:'No Válido como Comprobante Fiscal',cols:'Código · Descripción · Unid · P.Final · Bonif · P.C/DESC · Total Final',notas:'',nuevo:false},
+  {id:'P01',nombre:'ALLDIET',cuit:'27-33671046-5',tipo:'No Válido como Factura / Presupuesto',cols:'Artículo - Cantidad - Descripción - Precio - Descuento - Total',notas:'',nuevo:false},
+  {id:'P02',nombre:'GREEN & CO',cuit:'30-71543538-8',tipo:'Factura A',cols:'Artículo - Descripción - Cantidad - Precio - Total',notas:'Campo "Transporte" al pie: ignorar',nuevo:false},
+  {id:'P03',nombre:'MIXME SRL',cuit:'30-71798955-0',tipo:'Orden de Venta',cols:'Producto/Servicio - Cantidad - Precio unit. - Desc. - Subtotal final',notas:'',nuevo:false},
+  {id:'P04',nombre:'SAGRADA MADRE (Vrinda Import)',cuit:'30-71486673-3',tipo:'Factura A / No Válido como Factura / Presupuesto',cols:'Descripción - Cantidad - Precio Unit. - %IVA - Importe',notas:'',nuevo:false},
+  {id:'P05',nombre:'TIENDA VIDA PLUS (TIMOS SA)',cuit:'30-65279-5990',tipo:'Factura A / No Válido como Factura',cols:'Cantidad - Código - Descripción - Precio unit. - IVA - Bonif. - Importe',notas:'',nuevo:false},
+  {id:'P06',nombre:'CASA VEGANA (Vegan Nature SA)',cuit:'30-71513-4604',tipo:'No Válido como Factura',cols:'Cantidad - Código - Descripción - Precio unit. - IVA - Bonif. - Importe',notas:'',nuevo:false},
+  {id:'P07',nombre:'NATURAL GREEN',cuit:'20-25540-6176',tipo:'No Válido como Comprobante Fiscal',cols:'Cantidad - Código - Descripción - Precio unit. - Bonif. - Subtotal',notas:'',nuevo:false},
+  {id:'P08',nombre:'BEATRIZ COSMÉTICOS SRL',cuit:'30-68182575-0',tipo:'Factura A / Presupuesto',cols:'Artículo - Cantidad - Detalle - %IVA - Precio - Importe',notas:'',nuevo:false},
+  {id:'P09',nombre:'CHEZ MOMO (Placeres Responsables SRL)',cuit:'30-71707512-5',tipo:'Nota de Pedido',cols:'Descripción - Cantidad - Precio - Subtotal',notas:'',nuevo:false},
+  {id:'P10',nombre:'NEW DAY',cuit:'30-71111472-2',tipo:'No Válido como Factura / Recibo X',cols:'Cantidad - Producto - Precio - Descuento - IVA - Total',notas:'',nuevo:false},
+  {id:'P11',nombre:'EXPRONAT SH',cuit:'30-71111472-2',tipo:'Presupuesto / No Válido como Factura',cols:'Cantidad - Producto - Precio - Descuento - IVA - Total',notas:'',nuevo:false},
+  {id:'P12',nombre:'MEKA HERBAL',cuit:'no encontrado',tipo:'Pedido',cols:'Código - Descripción - Cantidad - Precio unit. - Total',notas:'',nuevo:false},
+  {id:'P13',nombre:'NATFRUT',cuit:'30-71219592-0',tipo:'Nota de Pedido / No Válido como Factura',cols:'Cod. - Producto - Cant. - Unid. - Importe - Total',notas:'',nuevo:false},
+  {id:'P14',nombre:'MASA MADRE',cuit:'30-71936879-0',tipo:'Remito',cols:'Código - Cantidad - Descripción - P.Uni - Total',notas:'',nuevo:false},
+  {id:'P15',nombre:'HUEVO DE CAMPO',cuit:'30-70704936-3',tipo:'Remito',cols:'Cantidad - Detalle - Precio - Neto',notas:'',nuevo:false},
+  {id:'P16',nombre:'IL SOLE',cuit:'30-71232120-9',tipo:'Nota de Pedido',cols:'Unid. - Producto - Valor S/IVA - Neto - IVA',notas:'',nuevo:false},
+  {id:'P17',nombre:'COPRALSA S.R.L.',cuit:'30-71841279-6',tipo:'Factura A',cols:'Código - Descripción - Unid - P.Neto - Bonif - P.C/DESC - Total Neto',notas:'',nuevo:false},
+  {id:'P18',nombre:'SEMILLAVIVA',cuit:'20-27548169-7',tipo:'Factura A / No Válido como Factura',cols:'Cantidad - Código - Descripción - Precio unitario - IVA - Bonif. - Importe',notas:'',nuevo:false},
+  {id:'P19',nombre:'TIERRA FLORIDA SAS',cuit:'30-71869781-2',tipo:'No Válido como Factura / Presupuesto',cols:'Código - Descripción - Cantidad - P.U. - Importe',notas:'',nuevo:false},
+  {id:'P20',nombre:'GRUPO UTOPÍA',cuit:'30-71683506-1',tipo:'No Válido',cols:'Cantidad - Descripción - Total',notas:'Sin precio unitario; calcular precioUnit = Total/Cantidad',nuevo:false},
+  {id:'P21',nombre:'KALANI S.A.',cuit:'30-71576698-8',tipo:'Factura A / Presupuesto / Remito / Nota de Crédito A',cols:'Artículo - Descripción - Cantidad - Precio - % Des. - Monto Unitario - Monto',notas:'',nuevo:false},
+  {id:'P22',nombre:'M&M',cuit:'30-71404158-0',tipo:'Orden de Venta',cols:'Producto/Servicio - Cantidad - Precio Unitario - Desc. unitario s/imp - Subtotal final',notas:'',nuevo:false},
+  {id:'P23',nombre:'MOLENS',cuit:'no encontrado',tipo:'Presupuesto',cols:'Descripción - Cantidad - Precio unit. - Total',notas:'',nuevo:false},
+  {id:'P24',nombre:'RULEY DISTRIBUIDORA',cuit:'no encontrado',tipo:'No Válido como Factura',cols:'Descripción Artículo - Cantidad - P. Unitario - Importe',notas:'',nuevo:false},
+  {id:'P25',nombre:'COPRALSA (comprobante interno)',cuit:'no encontrado',tipo:'No Válido como Comprobante Fiscal',cols:'Código - Descripción - Unid - P.Final - Bonif - P.C/DESC - Total Final',notas:'',nuevo:false},
 ];
 
-// ── SYSTEM PROMPT CLAUDE (optimizado) ─────────────────────
+// SYSTEM PROMPT CLAUDE (optimizado)
 const SYSTEM_PROMPT = `Procesás comprobantes comerciales argentinos para ELEMENTA. Extraé TODOS los artículos y respondé ÚNICAMENTE con un array JSON válido, sin texto extra, sin markdown.
 
-TIPOS VÁLIDOS: Factura A · Factura · No Válido como Factura · No Válido como Factura / Presupuesto · No Válido como Comprobante Fiscal · Presupuesto · Proforma · Remito · Nota de Pedido · Nota de Crédito A · Nota de Crédito · Pedido · Orden de Venta · No Válido · no definido
+TIPOS VÁLIDOS: Factura A - Factura - No Válido como Factura - No Válido como Factura / Presupuesto - No Válido como Comprobante Fiscal - Presupuesto - Proforma - Remito - Nota de Pedido - Nota de Crédito A - Nota de Crédito - Pedido - Orden de Venta - No Válido - no definido
 
 TIPO "FACTURA A / FACTURA / NOTA DE CRÉDITO A": solo si tiene QR visible en el pie, número de CAE impreso, O letra "A" recuadrada AFIP. Si ninguna → tipo = "no definido".
 
@@ -1277,64 +1650,116 @@ REGLAS:
 NÚMEROS: decimal con coma → convertir a punto. cantidad = entero. Los "(21.00)" en columnas IVA son % de IVA, NO cantidades. precioUnit = precio con descuento ya aplicado. Si hay Bonif/Descuento → aplicar antes de guardar.
 
 BIBLIOTECA:
-P01 ALLDIET | 27-33671046-5 | Cols: Artículo·Cantidad·Descripción·Precio·Descuento·Total
-P02 GREEN & CO | 30-71543538-8 | Cols: Artículo·Descripción·Cantidad·Precio·Total | "Transporte" al pie: ignorar
-P03 MIXME SRL | 30-71798955-0 | Cols: Producto·Cantidad·Precio·Desc·Subtotal
-P04 SAGRADA MADRE (Vrinda Import) | 30-71486673-3 | Cols: Descripción·Cantidad·PrecioUnit·%IVA·Importe
-P05 TIENDA VIDA PLUS (TIMOS SA) | 30-65279-5990 | Cols: Cantidad·Código·Descripción·PrecioUnit·IVA·Bonif·Importe
-P06 CASA VEGANA (Vegan Nature SA) | 30-71513-4604 | Cols: Cantidad·Código·Descripción·PrecioUnit·IVA·Bonif·Importe
-P07 NATURAL GREEN | 20-25540-6176 | Cols: Cantidad·Código·Descripción·PrecioUnit·Bonif·Subtotal
-P08 BEATRIZ COSMÉTICOS SRL | 30-68182575-0 | Cols: Artículo·Cantidad·Detalle·%IVA·Precio·Importe
-P09 CHEZ MOMO (Placeres Responsables SRL) | 30-71707512-5 | Cols: Descripción·Cantidad·Precio·Subtotal
-P10 NEW DAY | 30-71111472-2 | Cols: Cantidad·Producto·Precio·Descuento·IVA·Total
-P11 EXPRONAT SH | 30-71111472-2 | Cols: Cantidad·Producto·Precio·Descuento·IVA·Total
-P12 MEKA HERBAL | no encontrado | Cols: Código·Descripción·Cantidad·PrecioUnit·Total
-P13 NATFRUT | 30-71219592-0 | Cols: Cod·Producto·Cant·Unid·Importe·Total
-P14 MASA MADRE | 30-71936879-0 | Cols: Código·Cantidad·Descripción·PUni·Total
-P15 HUEVO DE CAMPO | 30-70704936-3 | Cols: Cantidad·Detalle·Precio·Neto
-P16 IL SOLE | 30-71232120-9 | Cols: Unid·Producto·ValorSIVA·Neto·IVA
-P17 COPRALSA S.R.L. | 30-71841279-6 | Cols: Código·Descripción·Unid·PNeto·Bonif·PCDESC·TotalNeto
-P18 SEMILLAVIVA | 20-27548169-7 | Cols: Cantidad·Código·Descripción·PrecioUnit·IVA·Bonif·Importe
-P19 TIERRA FLORIDA SAS | 30-71869781-2 | Cols: Código·Descripción·Cantidad·PU·Importe
-P20 GRUPO UTOPÍA | 30-71683506-1 | Cols: Cantidad·Descripción·Total | precioUnit = Total/Cantidad
-P21 KALANI S.A. | 30-71576698-8 | Cols: Artículo·Descripción·Cantidad·Precio·%Des·MontoUnit·Monto
-P22 M&M | 30-71404158-0 | Cols: Producto·Cantidad·PrecioUnit·DescUnit·SubtotalFinal
-P23 MOLENS | no encontrado | Cols: Descripción·Cantidad·PrecioUnit·Total
-P24 RULEY DISTRIBUIDORA | no encontrado | Cols: DescripciónArtículo·Cantidad·PUnitario·Importe
-P25 COPRALSA (comprobante interno) | no encontrado | Cols: Código·Descripción·Unid·PFinal·Bonif·PCDESC·TotalFinal`;
+P01 ALLDIET | 27-33671046-5 | Cols: Artículo - Cantidad - Descripción - Precio - Descuento - Total
+P02 GREEN & CO | 30-71543538-8 | Cols: Artículo - Descripción - Cantidad - Precio - Total | "Transporte" al pie: ignorar
+P03 MIXME SRL | 30-71798955-0 | Cols: Producto - Cantidad - Precio - Desc - Subtotal
+P04 SAGRADA MADRE (Vrinda Import) | 30-71486673-3 | Cols: Descripción - Cantidad - PrecioUnit - %IVA - Importe
+P05 TIENDA VIDA PLUS (TIMOS SA) | 30-65279-5990 | Cols: Cantidad - Código - Descripción - PrecioUnit - IVA - Bonif - Importe
+P06 CASA VEGANA (Vegan Nature SA) | 30-71513-4604 | Cols: Cantidad - Código - Descripción - PrecioUnit - IVA - Bonif - Importe
+P07 NATURAL GREEN | 20-25540-6176 | Cols: Cantidad - Código - Descripción - PrecioUnit - Bonif - Subtotal
+P08 BEATRIZ COSMÉTICOS SRL | 30-68182575-0 | Cols: Artículo - Cantidad - Detalle - %IVA - Precio - Importe
+P09 CHEZ MOMO (Placeres Responsables SRL) | 30-71707512-5 | Cols: Descripción - Cantidad - Precio - Subtotal
+P10 NEW DAY | 30-71111472-2 | Cols: Cantidad - Producto - Precio - Descuento - IVA - Total
+P11 EXPRONAT SH | 30-71111472-2 | Cols: Cantidad - Producto - Precio - Descuento - IVA - Total
+P12 MEKA HERBAL | no encontrado | Cols: Código - Descripción - Cantidad - PrecioUnit - Total
+P13 NATFRUT | 30-71219592-0 | Cols: Cod - Producto - Cant - Unid - Importe - Total
+P14 MASA MADRE | 30-71936879-0 | Cols: Código - Cantidad - Descripción - PUni - Total
+P15 HUEVO DE CAMPO | 30-70704936-3 | Cols: Cantidad - Detalle - Precio - Neto
+P16 IL SOLE | 30-71232120-9 | Cols: Unid - Producto - ValorSIVA - Neto - IVA
+P17 COPRALSA S.R.L. | 30-71841279-6 | Cols: Código - Descripción - Unid - PNeto - Bonif - PCDESC - TotalNeto
+P18 SEMILLAVIVA | 20-27548169-7 | Cols: Cantidad - Código - Descripción - PrecioUnit - IVA - Bonif - Importe
+P19 TIERRA FLORIDA SAS | 30-71869781-2 | Cols: Código - Descripción - Cantidad - PU - Importe
+P20 GRUPO UTOPÍA | 30-71683506-1 | Cols: Cantidad - Descripción - Total | precioUnit = Total/Cantidad
+P21 KALANI S.A. | 30-71576698-8 | Cols: Artículo - Descripción - Cantidad - Precio - %Des - MontoUnit - Monto
+P22 M&M | 30-71404158-0 | Cols: Producto - Cantidad - PrecioUnit - DescUnit - SubtotalFinal
+P23 MOLENS | no encontrado | Cols: Descripción - Cantidad - PrecioUnit - Total
+P24 RULEY DISTRIBUIDORA | no encontrado | Cols: DescripciónArtículo - Cantidad - PUnitario - Importe
+P25 COPRALSA (comprobante interno) | no encontrado | Cols: Código - Descripción - Unid - PFinal - Bonif - PCDESC - TotalFinal`;
 
-// ── INIT ───────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
-  // Alerta versión antigua
+function versionRank(v) {
+  const s = String(v || '').replace(/\D/g, '');
+  if (/^\d{12}$/.test(s)) {
+    const dd = s.slice(0,2), mm = s.slice(2,4), yy = s.slice(4,6), rest = s.slice(6);
+    return Number(`20${yy}${mm}${dd}${rest}`);
+  }
+  return Number(s) || 0;
+}
+
+function updateVersionLabels() {
+  const badge = document.getElementById('appVersionBadge');
+  if (badge) badge.textContent = `${APP_VERSION_LABEL}${LOCAL_ONLY ? ' localhost' : ''}`;
+}
+
+function decorateModules() {
+  document.querySelectorAll('.main > .card').forEach((card, index) => {
+    const icon = card.querySelector('.card-icon');
+    const chev = card.querySelector('.card-chevron');
+    const header = card.querySelector('.card-header');
+    if (icon) {
+      icon.textContent = String(index + 1);
+      icon.classList.add('module-number');
+    }
+    if (header && icon && chev && chev.previousElementSibling !== icon) {
+      header.insertBefore(chev, icon.nextSibling);
+    }
+  });
+}
+
+function applySessionData(data, sourceLabel) {
+  if (!data || !Array.isArray(data.rows)) throw new Error('El archivo no tiene rows validos.');
+  completeFechaCarga(data);
+  rows = data.rows;
+  if (Array.isArray(data.patrones)) {
+    data.patrones.forEach(p => {
+      const idx = patrones.findIndex(x => x.nombre && p.nombre && x.nombre.toUpperCase() === p.nombre.toUpperCase());
+      if (idx >= 0) patrones[idx] = Object.assign({}, patrones[idx], p);
+      else patrones.push(p);
+    });
+  }
+  compSerialLoad();
+  migrarIdComprobante();
+  consolidarPatrones();
+  autoSave();
+  renderAll();
+  semaforoRender();
+  if (sourceLabel) showAlertSuccess(`${sourceLabel}: ${rows.length} registros cargados en localhost.`);
+}
+
+async function loadLocalSeedIfNeeded() {
+  if (!LOCAL_ONLY) return;
+  if (localStorage.getItem(LOCAL_SEED_KEY)) return;
   try {
-    const last = localStorage.getItem('elementa_app_version');
-    if (last && last > APP_VERSION) {
+    const res = await fetch(LOCAL_SEED_URL, { cache:'no-store' });
+    if (!res.ok) return;
+    const data = await res.json();
+    applySessionData(data, 'Datos de prueba');
+    localStorage.setItem(LOCAL_SEED_KEY, '1');
+  } catch(e) {
+    console.warn('No se pudo cargar seed local:', e.message);
+  }
+}
+
+// INIT
+window.addEventListener('DOMContentLoaded', () => {
+  decorateModules();
+  updateVersionLabels();
+  // Alerta version antigua para App Carga
+  try {
+    const last = localStorage.getItem(APP_VERSION_STORAGE);
+    if (last && versionRank(last) > versionRank(APP_VERSION)) {
       const b = document.createElement('div');
       b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#f87171;color:#0a0a0f;padding:10px 16px;font-family:Syne,sans-serif;font-size:12px;font-weight:700;text-align:center;line-height:1.4';
-      b.textContent = `⚠️ Estás abriendo una versión antigua (v.${APP_VERSION}). La más reciente que usaste fue v.${last}. Descargá la versión nueva.`;
+      b.textContent = `Estas abriendo una version antigua (${APP_VERSION_LABEL}). La mas reciente que usaste fue v.${last}.`;
       document.body.prepend(b);
     } else {
-      localStorage.setItem('elementa_app_version', APP_VERSION);
+      localStorage.setItem(APP_VERSION_STORAGE, APP_VERSION);
     }
   } catch(e) {}
 
   apiKeyLoad();
+  loadProblemHistoryInit();
 
   // Inicializar crédito: si nunca se usó, precargar 400 comprobantes ya procesados
-  try {
-    const nuncaIniciado = !localStorage.getItem('elementa_credit_v14_init');
-    if (nuncaIniciado) {
-      const yaUsado = parseFloat(localStorage.getItem('elementa_credit_used'))||0;
-      const yaProc  = parseInt(localStorage.getItem('elementa_credit_proc'))||0;
-      if (yaUsado===0 && yaProc===0) {
-        // 400 comprobantes ya procesados antes de esta versión
-        localStorage.setItem('elementa_credit_used', (400 * COST_PER_IMAGE).toFixed(4));
-        localStorage.setItem('elementa_credit_proc', '400');
-      }
-      localStorage.setItem('elementa_credit_v14_init','1');
-    }
-  } catch(e) {}
-
   creditLoad();
 
   // Fecha y hora local del dispositivo
@@ -1348,8 +1773,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Cargar datos guardados
   try {
-    const saved  = localStorage.getItem('comp_rows_v5');
-    const savedP = localStorage.getItem('comp_patrones_v5');
+    const saved  = localStorage.getItem(rowsStorageKey());
+    const savedP = localStorage.getItem(patronesStorageKey());
     ['comp_patrones_v4','comp_rows_v4','comp_patrones_v3','comp_rows_v3'].forEach(k => localStorage.removeItem(k));
     if (saved) rows = JSON.parse(saved);
     if (savedP) {
@@ -1377,27 +1802,28 @@ window.addEventListener('DOMContentLoaded', () => {
   semaforoRender();
   fbInit();
   driveInit();
+  loadLocalSeedIfNeeded();
 
   // Advertencia si Firebase no está conectado tras 3 segundos
   setTimeout(() => {
-    if (!_fbUser) {
+    if (!LOCAL_ONLY && !_fbUser) {
       showAlertErr('⚠️ No conectado — tocá el semáforo 🔴 para iniciar sesión con Google.');
     }
   }, 3000);
 });
 
-// ── AUTO SAVE ──────────────────────────────────────────────
+// AUTO SAVE
 function autoSave() {
   try {
-    localStorage.setItem('comp_rows_v5', JSON.stringify(rows));
+    localStorage.setItem(rowsStorageKey(), JSON.stringify(rows));
     const mod = patrones.filter(p => p.nuevo || p.editado);
-    if (mod.length) localStorage.setItem('comp_patrones_v5', JSON.stringify(mod));
-    else localStorage.removeItem('comp_patrones_v5');
+    if (mod.length) localStorage.setItem(patronesStorageKey(), JSON.stringify(mod));
+    else localStorage.removeItem(patronesStorageKey());
   } catch(e) {}
   driveAutoPush();
 }
 
-// ── CONSOLIDAR PATRONES DUPLICADOS ────────────────────────
+// CONSOLIDAR PATRONES DUPLICADOS
 function consolidarPatrones() {
   const originales = patrones.filter(p => !p.nuevo);
   const duplicados = [];
@@ -1418,7 +1844,7 @@ function consolidarPatrones() {
   if (duplicados.length) autoSave();
 }
 
-// ── HELPERS ────────────────────────────────────────────────
+// HELPERS
 function fmtNum(n, dec=2) {
   const num = parseFloat(n);
   if (isNaN(num)) return '0';
@@ -1454,11 +1880,19 @@ function normalizeNombre(s) {
   return s.toUpperCase().replace(/\(.*?\)/g,'').replace(/\./g,'').replace(/&/g,'Y').replace(/[^A-Z0-9ÁÉÍÓÚÜÑ ]/g,' ').replace(/\s+/g,' ').trim();
 }
 
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function escapeAttr(s) {
+  return esc(s).replace(/`/g, '&#96;');
+}
+
 function palabrasClave(s) {
   return normalizeNombre(s).split(' ').filter(w => w.length >= 3);
 }
 
-// ── FUZZY MATCH PROVEEDOR ─────────────────────────────────
+// FUZZY MATCH PROVEEDOR
 function patronFuzzyMatch(nombre, pool) {
   const qWords = palabrasClave(nombre);
   if (!qWords.length) return null;
@@ -1476,7 +1910,7 @@ function patronFuzzyMatch(nombre, pool) {
   return best;
 }
 
-// ── RENDER PRINCIPAL ───────────────────────────────────────
+// RENDER PRINCIPAL
 function renderAll() {
   renderStats();
   renderFiltroProveedores();
@@ -1493,7 +1927,7 @@ function renderAll() {
   dbPopularProveedores();
 }
 
-// ── FECHA LOCAL ────────────────────────────────────────────
+// FECHA LOCAL
 function localDateStr() {
   const d = new Date();
   const dd = String(d.getDate()).padStart(2,'0');
@@ -1502,22 +1936,36 @@ function localDateStr() {
   return `${dd}/${mm}/${yyyy}`;
 }
 
-// ── SEMÁFORO DE ESTADO ─────────────────────────────────────
+// SEMÁFORO DE ESTADO
+function creditStatusText() {
+  if (_creditState.status === 'ok') return `Credito API disponible: USD ${fmtMoney(_creditState.availableUsd)}`;
+  if (_creditState.status === 'no_credit') return 'Sin credito API disponible.';
+  if (_creditState.status === 'no_admin_key') return 'Falta ANTHROPIC_ADMIN_KEY en el servidor local.';
+  if (_creditState.status === 'invalid_admin_key') return 'Admin API key local invalida.';
+  if (_creditState.status === 'anthropic_error') return `No se pudo consultar credito API: ${_creditState.error || 'Error desconocido'}`;
+  return 'Credito API sin consultar.';
+}
+
 function semaforoRender() {
   const dot   = document.getElementById('semaforoDot');
   const label = document.getElementById('semaforoLabel');
   if (!dot||!label) return;
 
   const tieneApiKey = !!_apiKeyMem;
-  const tieneSync   = !!_fbUser;
+  const tieneSync   = LOCAL_ONLY ? true : !!_fbUser;
+  const creditStatus = _creditState.status || 'unknown';
 
   let color, shadow, txt;
   if (!tieneApiKey && !tieneSync) {
-    color='#f87171'; shadow='0 0 8px #f87171'; txt='No disponible';
+    color='#f87171'; shadow='0 0 8px #f87171'; txt='Configurar app';
   } else if (!tieneApiKey || !tieneSync) {
-    color='#fbbf24'; shadow='0 0 8px #fbbf24'; txt='Falta algo';
+    color='#fbbf24'; shadow='0 0 8px #fbbf24'; txt=!tieneApiKey ? 'Configurar API' : 'Conectar Google';
+  } else if (creditStatus === 'no_credit') {
+    color='#f87171'; shadow='0 0 8px #f87171'; txt='Sin credito API';
+  } else if (creditStatus !== 'ok') {
+    color='#fbbf24'; shadow='0 0 8px #fbbf24'; txt='Verificar credito API';
   } else {
-    color='#6ee7b7'; shadow='0 0 8px #6ee7b7'; txt='Normal';
+    color='#6ee7b7'; shadow='0 0 8px #6ee7b7'; txt='Listo para usar';
   }
 
   dot.style.background = color;
@@ -1528,46 +1976,51 @@ function semaforoRender() {
 
 function semaforoClick() {
   const tieneApiKey = !!_apiKeyMem;
-  const tieneSync   = !!_fbUser;
+  const tieneSync   = LOCAL_ONLY ? true : !!_fbUser;
+  const creditOk = _creditState.status === 'ok';
 
   const items = [
     {
-      icono: tieneApiKey ? '✅' : '❌',
-      texto: tieneApiKey ? 'API Key configurada' : 'API Key faltante — configurala en Configuración Técnica',
+      icono: tieneApiKey ? 'OK' : '!',
+      texto: tieneApiKey ? 'API Key configurada' : 'Para cargar comprobantes con Claude, configura la API Key en Configuracion Tecnica.',
       color: tieneApiKey ? 'var(--accent)' : 'var(--danger)'
     },
     {
-      icono: tieneSync ? '✅' : '❌',
-      texto: tieneSync ? `Firebase conectado como ${_fbUser.email}` : 'No conectado — tocá Configuración Técnica → Conectar con Google',
+      icono: tieneSync ? 'OK' : '!',
+      texto: LOCAL_ONLY ? 'Modo localhost activo: los cambios quedan en este navegador. Para traer produccion, conecta Google y usa Importar produccion a localhost.' : (tieneSync ? `Google conectado como ${_fbUser.email}` : 'Para sincronizar entre dispositivos, conecta Google desde Configuracion Tecnica.'),
       color: tieneSync ? 'var(--accent)' : 'var(--danger)'
     },
+    {
+      icono: creditOk ? 'OK' : '!',
+      texto: creditStatusText(),
+      color: creditOk ? 'var(--accent)' : (_creditState.status === 'no_credit' ? 'var(--danger)' : 'var(--warn)')
+    }
   ];
 
   const ls = localStorage.getItem(DRIVE_LASTSYNC_KEY);
   items.push({
-    icono: ls ? '☁️' : '⚠️',
-    texto: `Última sincronización: ${ls ? new Date(parseInt(ls)).toLocaleString('es-AR') : 'Nunca'}`,
+    icono: ls ? 'OK' : '!',
+    texto: LOCAL_ONLY ? `Ultima importacion/guardado local: ${ls ? new Date(parseInt(ls)).toLocaleString('es-AR') : 'Todavia no importaste produccion'}` : `Ultima sincronizacion: ${ls ? new Date(parseInt(ls)).toLocaleString('es-AR') : 'Nunca'}`,
     color: ls ? 'var(--muted)' : 'var(--warn)'
   });
 
   const html = items.map(it =>
     `<div style="display:flex;align-items:flex-start;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 13px">
-      <span style="font-size:16px;flex-shrink:0">${it.icono}</span>
+      <span style="font-size:11px;flex-shrink:0;font-family:'DM Mono',monospace;color:${it.color};font-weight:800">${it.icono}</span>
       <span style="font-size:12px;color:${it.color};line-height:1.5">${it.texto}</span>
     </div>`
   ).join('');
 
   document.getElementById('semaforoModalContent').innerHTML = html;
-  const allOk = tieneApiKey && tieneSync;
-  document.getElementById('semaforoModalTitle').textContent = allOk ? '🟢 Sistema Normal' : '⚠️ Estado del sistema';
+  const allOk = tieneApiKey && tieneSync && creditOk;
+  document.getElementById('semaforoModalTitle').textContent = allOk ? 'Sistema listo' : 'Que falta para operar';
   if (!allOk) {
     document.getElementById('semaforoModalContent').insertAdjacentHTML('beforeend',
-      `<button class="btn btn-primary" onclick="closeModal('modalSemaforo');toggleCard('sesionCard');document.getElementById('sesionCard').scrollIntoView({behavior:'smooth'})" style="margin-top:4px">⚙️ Ir a Configuración Técnica</button>`);
+      `<button class="btn btn-primary" onclick="closeModal('modalSemaforo');toggleCard('sesionCard');document.getElementById('sesionCard').scrollIntoView({behavior:'smooth'})" style="margin-top:4px">Resolver en Configuracion Tecnica</button>`);
   }
   openModal('modalSemaforo');
 }
-
-// ── TABS AGREGAR/MODIFICAR ─────────────────────────────────
+// TABS AGREGAR/MODIFICAR
 function addSwitchTab(tab) {
   const isNuevo = tab === 'nuevo';
   document.getElementById('addTabNuevo').style.display  = isNuevo ? 'block' : 'none';
@@ -1588,18 +2041,18 @@ function renderStats() {
   document.getElementById('statComps').textContent    = comps;
   document.getElementById('statProvs').textContent    = provs;
   document.getElementById('statTotal').textContent    = '$'+fmtNum(total,0);
-  document.getElementById('tableSubtitle').textContent = rows.length ? `${rows.length} artículos · ${provs} proveedor${provs!==1?'es':''}` : 'Sin registros';
+  document.getElementById('tableSubtitle').textContent = rows.length ? `${rows.length} artículos - ${provs} proveedor${provs!==1?'es':''}` : 'Sin registros';
   semaforoRender();
 }
 
 function renderFiltroProveedores() {
   const wrap  = document.getElementById('provFilterWrap');
-  const chips = document.getElementById('provFilterChips');
+  const sel = document.getElementById('provFilterSelect');
   const provs = [...new Set(rows.map(r=>r.proveedor))].filter(Boolean).sort();
   if (!provs.length) { wrap.style.display='none'; return; }
   wrap.style.display='block';
-  chips.innerHTML = `<div class="pf-chip all-chip${!provFiltro?' active':''}" onclick="setProvFiltro(null)">Todos</div>`
-    + provs.map(p => `<div class="pf-chip${provFiltro===p?' active':''}" onclick="setProvFiltro('${p.replace(/'/g,"\\'")}')">${p}</div>`).join('');
+  sel.innerHTML = `<option value="">Todos los proveedores</option>` +
+    provs.map(p => `<option value="${escapeAttr(p)}" ${provFiltro===p?'selected':''}>${p}</option>`).join('');
 }
 
 function setProvFiltro(p) {
@@ -1704,29 +2157,35 @@ function renderTable() {
 
 function renderPatrones() {
   const nuevos = patrones.filter(p=>p.nuevo).length;
-  document.getElementById('patronesSub').textContent = `${patrones.length} proveedores · ${nuevos} nuevo${nuevos!==1?'s':''} esta sesión`;
+  document.getElementById('patronesSub').textContent = `${patrones.length} proveedores - ${nuevos} nuevo${nuevos!==1?'s':''} esta sesión`;
   document.getElementById('patronesList').innerHTML = patrones.map((p,i) => `
     <div class="patron-item ${p.nuevo?'patron-new':''}">
       <div class="patron-header">
         <div class="patron-name">${p.nuevo?'🆕 ':''}${p.id} ${p.nombre}</div>
-        <div style="display:flex;align-items:center;gap:8px">
+        <div class="patron-actions">
           <div class="patron-cuit">${p.cuit}</div>
+          ${p.nuevo?`<button onclick="asignarPatronNuevo(${i})" style="background:rgba(110,231,183,.15);border:1px solid rgba(110,231,183,.35);color:var(--accent);border-radius:5px;padding:2px 8px;font-size:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700">Asignar</button>`:''}
           <button onclick="editarPatron(${i})" style="background:rgba(129,140,248,.15);border:1px solid rgba(129,140,248,.3);color:var(--accent2);border-radius:5px;padding:2px 8px;font-size:10px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700">✏️ Editar</button>
         </div>
       </div>
-      <div class="patron-cols">Tipo: ${p.tipo}${p.cols&&p.cols!=='a confirmar'?'<br>Cols: '+p.cols:''}${p.notas?'<br>📌 '+p.notas:''}</div>
+      <div class="patron-cols">Tipo: ${p.tipo}${p.cols&&p.cols!=='a confirmar'?'<br>Cols: '+p.cols:''}${p.aliases&&p.aliases.length?'<br>Patrones asignados: '+p.aliases.map(esc).join(' - '):''}${p.notas?'<br>Nota: '+p.notas:''}</div>
     </div>`).join('');
 }
 
 function renderProvChips() {
-  const provs = [...new Set(rows.map(r=>r.proveedor))].filter(Boolean);
-  document.getElementById('provChips').innerHTML = provs.map(p =>
-    `<div class="chip" onclick="selectProv('${p.replace(/'/g,"\\'")}')">📦 ${p}</div>`).join('');
+  const sel = document.getElementById('inProvSelect');
+  if (!sel) return;
+  const cur = document.getElementById('inProv')?.value || '';
+  const provs = [...new Set(rows.map(r=>r.proveedor).filter(Boolean))].sort();
+  sel.innerHTML = '<option value="">— seleccionar proveedor existente —</option>' +
+    provs.map(p => `<option value="${escapeAttr(p)}" ${cur===p?'selected':''}>${p}</option>`).join('');
 }
 
-function evRenderProvChips() {} // mantenido por compatibilidad con renderAll
+function evRenderProvChips() {
+  evPopulateSelects();
+}
 
-// ── AGREGAR FILA MANUAL ────────────────────────────────────
+// AGREGAR FILA MANUAL
 function addRow() {
   const prov  = document.getElementById('inProv').value.trim();
   const cuit  = document.getElementById('inCuit').value.trim();
@@ -1767,13 +2226,16 @@ function addRow() {
 function deleteRow(i) { rows.splice(i,1); autoSave(); renderAll(); }
 
 function selectProv(name) {
+  if (!name) return;
   document.getElementById('inProv').value = name;
+  const sel = document.getElementById('inProvSelect');
+  if (sel) sel.value = name;
   const p = patrones.find(x=>x.nombre===name);
   if (p && p.cuit !== 'no encontrado' && p.cuit !== 'no visible') document.getElementById('inCuit').value = p.cuit;
   document.getElementById('inDesc').focus();
 }
 
-// ── IMPORTAR EXCEL ─────────────────────────────────────────
+// IMPORTAR EXCEL
 const COL_MAP = [
   {campo:'fecha',      keys:['fecha entrega','fecha.comp','fecha comprobante','fecha']},
   {campo:'tipo',       keys:['tipo']},
@@ -1786,6 +2248,32 @@ const COL_MAP = [
   {campo:'idcomp',     keys:['id comprobante','idcomprobante','id_comprobante','id comp']},
   {campo:'fechaCarga', keys:['fecha.carga','fecha carga','fechacarga']},
 ];
+
+function buildExcelValidation(headers, colIdx, data, sheetName) {
+  const expected = ['proveedor','descripcion','cantidad','precioUnit','total','fecha','tipo','cuit'];
+  const recognizedCampos = Object.keys(colIdx);
+  const recognizedIndexes = new Set(Object.values(colIdx));
+  const recognizedHeaders = [...recognizedIndexes].map(i => headers[i]).filter(Boolean);
+  const unknownHeaders = headers.filter((h,i) => h && !recognizedIndexes.has(i));
+  const missingImportant = ['proveedor','descripcion','total'].filter(k => !(k in colIdx));
+  const provs = [...new Set(data.map(r=>r.proveedor).filter(Boolean))];
+  const incompleteRows = data.filter(r => !r.proveedor || !r.descripcion || !r.cuit || !r.tipo || !(parseFloat(r.total)||0)).length;
+  const newProviders = provs.filter(p => !patronFuzzyMatch(p));
+  const knownProviders = provs.length - newProviders.length;
+  const sinProveedor = data.filter(r => !r.proveedor || r.proveedor === 'NO ENCONTRADO').length;
+  return {
+    sheetName,
+    recognizedCampos,
+    recognizedHeaders,
+    unknownHeaders,
+    missingImportant,
+    newProviders,
+    knownProviders,
+    sinProveedor,
+    incompleteRows,
+    expected
+  };
+}
 
 function parseNum(v) {
   if (v===null||v===undefined||v==='') return 0;
@@ -1800,15 +2288,16 @@ function parseNum(v) {
 function previsualizarExcel(evt) {
   const file = evt.target.files[0]; if (!file) return;
 
-  // ── Verificar duplicado por lastModified + size ────────────
+  // Verificar duplicado por lastModified + size
   const fp = fpFromExcel(file);
   if (compIsDuplicate(fp)) {
     const info = compInfoFromRows(fp);
     const det  = info
-      ? `ID: <strong>${info.idComp}</strong><br>Proveedor: <strong>${info.provs}</strong><br>Fecha: ${info.fecha} · ${info.tipo}<br>Artículos: ${info.items} · Total: $${fmtNum(info.total,0)}`
+      ? `ID: <strong>${info.idComp}</strong><br>Proveedor: <strong>${info.provs}</strong><br>Fecha: ${info.fecha} - ${info.tipo}<br>Artículos: ${info.items} - Total: $${fmtNum(info.total,0)}`
       : `Archivo: <strong>${file.name}</strong>`;
     document.getElementById('dupDetalle').innerHTML =
       `<span style="color:var(--muted)">Archivo duplicado:</span> <strong style="color:var(--warn)">${file.name}</strong><br><br>${det}`;
+    addLoadProblemHistory('Excel duplicado', file.name);
     openModal('modalDuplicado');
     evt.target.value='';
     return;
@@ -1821,7 +2310,7 @@ function previsualizarExcel(evt) {
       const sheetName = wb.SheetNames.find(n=>!n.toLowerCase().includes('patron'))||wb.SheetNames[0];
       const ws  = wb.Sheets[sheetName];
       const raw = XLSX.utils.sheet_to_json(ws, {header:1,defval:'',raw:true});
-      if (!raw||raw.length<2) { showAlertErr('Archivo sin datos.'); return; }
+      if (!raw||raw.length<2) { showAlertErr('Archivo sin datos.'); addLoadProblemHistory('Excel sin datos', file.name); return; }
       let headerRow=0;
       for (let i=0;i<Math.min(5,raw.length);i++) {
         const rl = raw[i].map(c=>String(c).toLowerCase().trim());
@@ -1830,7 +2319,7 @@ function previsualizarExcel(evt) {
       const headers = raw[headerRow].map(c=>String(c).toLowerCase().trim());
       const colIdx  = {};
       COL_MAP.forEach(({campo,keys}) => { for (const k of keys) { const idx=headers.findIndex(h=>h===k); if(idx!==-1&&!(campo in colIdx)){colIdx[campo]=idx;break;} }});
-      if (!('descripcion' in colIdx)&&!('proveedor' in colIdx)) { showAlertErr('Formato no reconocido. Cols: '+headers.join(' | ')); return; }
+      if (!('descripcion' in colIdx)&&!('proveedor' in colIdx)) { showAlertErr('Formato no reconocido. Cols: '+headers.join(' | ')); addLoadProblemHistory('Excel no reconocido', file.name); return; }
       importBuffer = [];
       raw.slice(headerRow+1).forEach(r => {
         if (!r.some(c=>c!==''&&c!==null&&c!==undefined)) return;
@@ -1848,7 +2337,8 @@ function previsualizarExcel(evt) {
         else fechaVal = fmtFecha(String(fechaVal).trim());
         importBuffer.push({fecha:fechaVal,tipo:String(r[colIdx.tipo]??'').trim(),proveedor:prov,cuit:String(r[colIdx.cuit]??'').trim(),descripcion:desc,cantidad:cant,precioUnit:price,total,_fp:fp,_idComp:String(r[colIdx.idcomp]??'').trim()||null,_fechaCarga:colIdx.fechaCarga!==undefined?String(r[colIdx.fechaCarga]??'').trim()||null:null});
       });
-      if (!importBuffer.length) { showAlertErr('No se encontraron artículos.'); return; }
+      if (!importBuffer.length) { showAlertErr('No se encontraron artículos.'); addLoadProblemHistory('Excel sin artículos', file.name); return; }
+      excelValidationInfo = buildExcelValidation(headers, colIdx, importBuffer, sheetName);
 
       // Generar _idComp para items que no traen uno, agrupando por proveedor+fecha+tipo
       const compMapXls = new Map();
@@ -1864,7 +2354,7 @@ function previsualizarExcel(evt) {
       });
 
       mostrarPreview(importBuffer, sheetName);
-    } catch(err) { showAlertErr('Error: '+err.message); console.error(err); }
+    } catch(err) { showAlertErr('Error: '+err.message); addLoadProblemHistory('Error Excel', `${file.name}: ${err.message}`); console.error(err); }
   };
   reader.readAsArrayBuffer(file);
   evt.target.value='';
@@ -1874,21 +2364,34 @@ function mostrarPreview(data, sheetName) {
   const provs   = [...new Set(data.map(r=>r.proveedor))].filter(Boolean);
   const total   = data.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
   const sinDatos = provs.filter(p=>data.filter(r=>r.proveedor===p).some(r=>!r.cuit||r.cuit===''||!r.tipo||r.tipo==='')).length;
+  const v = excelValidationInfo;
+  const validationHtml = v ? `
+    <div style="margin-top:9px;padding-top:9px;border-top:1px solid rgba(110,231,183,.22);font-size:10px;line-height:1.6">
+      <strong>Validación previa:</strong>
+      ${v.recognizedHeaders.length ? `<br>Columnas reconocidas: ${esc(v.recognizedHeaders.join(' - '))}` : ''}
+      ${v.unknownHeaders.length ? `<br>Columnas no reconocidas: ${esc(v.unknownHeaders.join(' - '))}` : ''}
+      ${v.missingImportant.length ? `<br><span style="color:var(--warn)">Faltan columnas importantes: ${esc(v.missingImportant.join(' - '))}</span>` : ''}
+      <br><strong>Se va a guardar:</strong> ${v.newProviders.length} proveedor${v.newProviders.length!==1?'es':''} nuevo${v.newProviders.length!==1?'s':''}, ${v.knownProviders} conocido${v.knownProviders!==1?'s':''}, ${v.sinProveedor} comprobante${v.sinProveedor!==1?'s':''} sin proveedor, ${v.incompleteRows} fila${v.incompleteRows!==1?'s':''} incompleta${v.incompleteRows!==1?'s':''}.
+    </div>` : '';
   document.getElementById('importInfo').innerHTML =
-    `✅ <strong>${data.length} artículos</strong> en "<strong>${sheetName}</strong>" · `+
-    `${provs.length} proveedor${provs.length!==1?'es':''} · `+
+    `✅ <strong>${data.length} artículos</strong> en "<strong>${sheetName}</strong>" - `+
+    `${provs.length} proveedor${provs.length!==1?'es':''} - `+
     `<strong style="color:var(--accent)">$${fmtNum(total,0)}</strong>`+
-    (sinDatos>0?` · ⚠️ ${sinDatos} con datos incompletos`:'');
+    (sinDatos>0?` - ⚠️ ${sinDatos} con datos incompletos`:'')+
+    validationHtml;
   document.getElementById('importPreview').style.display='block';
-  document.getElementById('importCard').classList.add('open');
-  document.getElementById('importCardChev').classList.add('open');
+  if (!document.getElementById('importCard').classList.contains('open')) toggleCard('importCard');
 }
 
 function confirmarImport() {
   if (!importBuffer.length) return;
   document.getElementById('modalImportCount').textContent = importBuffer.length;
   document.getElementById('modalExistCount').textContent  = rows.length;
-  document.getElementById('modalImportInfo').innerHTML = `✅ <strong>${importBuffer.length} artículos</strong> listos para importar`;
+  const v = excelValidationInfo;
+  const detalle = v
+    ? `<br><span style="color:var(--muted)">Se va a guardar: ${v.newProviders.length} proveedor${v.newProviders.length!==1?'es':''} nuevo${v.newProviders.length!==1?'s':''}, ${v.knownProviders} conocido${v.knownProviders!==1?'s':''}, ${v.sinProveedor} sin proveedor, ${v.incompleteRows} fila${v.incompleteRows!==1?'s':''} incompleta${v.incompleteRows!==1?'s':''}.</span>`
+    : '';
+  document.getElementById('modalImportInfo').innerHTML = `✅ <strong>${importBuffer.length} artículos</strong> listos para importar${detalle}`;
   openModal('modalImport');
 }
 
@@ -1974,29 +2477,82 @@ function finalizarImport() {
 
 function collapseAllCards() {
   ['importImgCard','importCard','tableCard','varCard','evolucionCard','exportCard','addCard','patronesCard','sesionCard','crCard'].forEach(id => {
-    document.getElementById(id)?.classList.remove('open');
+    const body = document.getElementById(id);
+    body?.classList.remove('open');
+    body?.closest('.card')?.classList.remove('is-open');
     document.getElementById(id+'Chev')?.classList.remove('open');
   });
 }
 
-// ── BIBLIOTECA: CRUD ───────────────────────────────────────
+// BIBLIOTECA: CRUD
 function nuevoPatron() {
   document.getElementById('mpModalTitle').textContent = '➕ Nuevo proveedor';
   document.getElementById('mpIndex').value = '-1';
   ['mpNombre','mpCuit','mpTipo','mpCols','mpNotas'].forEach(id => document.getElementById(id).value='');
+  renderAsignarPatronWrap(null);
   openModal('modalPatron');
 }
 
-function editarPatron(i) {
+function editarPatron(i, showAssign=false) {
   const p = patrones[i];
-  document.getElementById('mpModalTitle').textContent = '✏️ Editar proveedor';
+  document.getElementById('mpModalTitle').textContent = p.nuevo && !showAssign ? '✏️ Confirmar proveedor nuevo' : '✏️ Editar proveedor';
   document.getElementById('mpIndex').value = i;
   document.getElementById('mpNombre').value = p.nombre||'';
   document.getElementById('mpCuit').value   = p.cuit||'';
   document.getElementById('mpTipo').value   = p.tipo||'';
   document.getElementById('mpCols').value   = p.cols||'';
   document.getElementById('mpNotas').value  = p.notas||'';
+  renderAsignarPatronWrap(showAssign && p.nuevo ? i : null);
   openModal('modalPatron');
+}
+
+function asignarPatronNuevo(i) {
+  editarPatron(i, true);
+}
+
+function renderAsignarPatronWrap(idx) {
+  const wrap = document.getElementById('mpAsignarWrap');
+  const sel = document.getElementById('mpAsignarSelect');
+  if (!wrap || !sel) return;
+  if (idx === null || idx === undefined || idx < 0 || !patrones[idx]?.nuevo) {
+    wrap.style.display = 'none';
+    sel.innerHTML = '';
+    return;
+  }
+  const actual = patrones[idx].nombre;
+  const confirmed = patrones
+    .filter(p => !p.nuevo && p.nombre && p.nombre.toUpperCase() !== actual.toUpperCase())
+    .sort((a,b)=>a.nombre.localeCompare(b.nombre,'es'));
+  sel.innerHTML = '<option value="">— seleccionar proveedor confirmado —</option>' +
+    confirmed.map(p=>`<option value="${escapeAttr(p.nombre)}">${p.nombre} - ${p.cuit||'no encontrado'}</option>`).join('');
+  wrap.style.display = confirmed.length ? 'block' : 'none';
+}
+
+function confirmarAsignarPatronNuevo() {
+  const idx = parseInt(document.getElementById('mpIndex').value);
+  const targetName = document.getElementById('mpAsignarSelect').value;
+  const source = patrones[idx];
+  const target = patrones.find(p => p.nombre === targetName);
+  if (!source || !source.nuevo || !target) { alert('Seleccioná un proveedor confirmado.'); return; }
+  const oldName = source.nombre;
+  let count = 0;
+  rows.forEach(r => {
+    if ((r.proveedor||'').toUpperCase() === oldName.toUpperCase()) {
+      r.proveedor = target.nombre;
+      r.cuit = target.cuit || r.cuit || 'no encontrado';
+      if (!r.tipo || r.tipo === source.tipo) r.tipo = target.tipo || r.tipo;
+      count++;
+    }
+  });
+  target.editado = true;
+  target.aliases = [...new Set([...(target.aliases || []), oldName])];
+  target.notas = target.notas || `Incluye patrones asignados desde comprobantes no identificados.`;
+  if (!target.cols && source.cols) target.cols = source.cols;
+  patrones.splice(idx, 1);
+  autoSave();
+  renderAll();
+  closeModal('modalPatron');
+  showAlertSuccess(`Patron ${oldName} asignado a ${target.nombre}. ${count} fila${count!==1?'s':''} actualizada${count!==1?'s':''}.`);
 }
 
 function guardarPatron() {
@@ -2008,16 +2564,28 @@ function guardarPatron() {
   const cols  = document.getElementById('mpCols').value.trim();
   const notas = document.getElementById('mpNotas').value.trim();
   if (idx >= 0) {
-    patrones[idx] = {...patrones[idx], nombre, cuit, tipo, cols, notas, editado:true};
+    const eraNuevo = !!patrones[idx].nuevo;
+    const nombreAnterior = patrones[idx].nombre || '';
+    patrones[idx] = {...patrones[idx], nombre, cuit, tipo, cols, notas, nuevo:false, editado:true};
+    if (eraNuevo) {
+      rows.forEach(r => {
+        if ((r.proveedor||'').toUpperCase() === nombreAnterior.toUpperCase()) {
+          r.proveedor = nombre;
+          r.cuit = cuit;
+          if (!r.tipo || r.tipo === 'No especificado') r.tipo = tipo;
+        }
+      });
+    }
   } else {
     if (patrones.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase())) { alert('Ya existe ese proveedor.'); return; }
     patrones.push({id:'P'+String(patrones.length+1).padStart(2,'0'), nombre, cuit, tipo, cols, notas, nuevo:true});
   }
-  autoSave(); renderPatrones(); closeModal('modalPatron');
+  autoSave(); renderAll(); closeModal('modalPatron');
+  showAlertSuccess(idx >= 0 ? `Proveedor "${nombre}" guardado como confirmado.` : `Proveedor "${nombre}" agregado a la biblioteca.`);
   ['mpNombre','mpCuit','mpTipo','mpCols','mpNotas'].forEach(id=>document.getElementById(id).value='');
 }
 
-// ── GESTIÓN BASE DE DATOS ──────────────────────────────────
+// GESTIÓN BASE DE DATOS
 function dbPopularProveedores() {
   const sel  = document.getElementById('dbProvSel'); if (!sel) return;
   const cur  = sel.value;
@@ -2050,7 +2618,7 @@ function dbOnDescChange() {
   if (!matches.length) { resultsWrap.style.display='none'; return; }
   document.getElementById('dbResultsList').innerHTML = matches.map(({r,i})=>
     `<div onclick="dbCargarRegistro(${i})" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;cursor:pointer;font-size:11px;font-family:'DM Mono',monospace;display:flex;justify-content:space-between;align-items:center;gap:8px" onmouseover="this.style.borderColor='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)'">
-      <span style="color:var(--muted)">${fmtFecha(r.fecha)} · ${r.tipo||'—'}</span>
+      <span style="color:var(--muted)">${fmtFecha(r.fecha)} - ${r.tipo||'—'}</span>
       <span style="font-weight:700;color:var(--accent)">$${fmtNum(r.precioUnit,2)}</span>
       <span style="color:var(--accent2);font-size:10px">✏️ editar</span>
     </div>`).join('');
@@ -2103,7 +2671,7 @@ function dbLimpiarConBackup() {
   setTimeout(()=>{ openModal('modalLimpiar'); }, 400);
 }
 
-// ── SESIÓN ────────────────────────────────────────────────
+// SESIÓN
 function guardarSesion() {
   const data = JSON.stringify({rows, patrones:patrones.filter(p=>p.nuevo||p.editado), version:4, fecha:new Date().toISOString()}, null, 2);
   const a = Object.assign(document.createElement('a'), {
@@ -2119,12 +2687,7 @@ function cargarSesion(evt) {
   reader.onload = e => {
     try {
       const data = JSON.parse(e.target.result);
-      if (data.rows) rows = data.rows;
-      if (data.patrones) data.patrones.forEach(p => { if(!patrones.find(x=>x.nombre===p.nombre)) patrones.push(p); });
-      // Reconstruir fingerprints y seriado desde los rows cargados
-      compSerialLoad();
-      migrarIdComprobante(); // asignar IDs a rows sin _idComp
-      autoSave(); renderAll(); showAlertSuccess('✅ Sesión cargada correctamente.');
+      applySessionData(data, 'Sesion cargada');
     } catch { alert('Archivo inválido.'); }
   };
   reader.readAsText(file);
@@ -2133,25 +2696,33 @@ function cargarSesion(evt) {
 
 function limpiarDatos() {
   rows=[];
+  localStorage.setItem(LOCAL_SEED_KEY, 'manual-cleared');
   // Limpiar también fingerprints y seriado al limpiar la base
   _compFPs = new Set();
   _compSerial = 0;
   compSerialSave();
   autoSave(); renderAll(); closeModal('modalLimpiar');
-  ['importCardSub','imgStatus','imgPreviews','imgProcBtn'].forEach(id=>{
+  ['importCardSub','imgStatus','imgPreviews','imgProcBtn','imgLoadSummary'].forEach(id=>{
     const el=document.getElementById(id); if(!el) return;
     if (id==='importCardSub') el.textContent='Subí una tabla Excel o una foto/PDF del comprobante';
     else el.style.display='none';
   });
   document.getElementById('imgDropZone').style.borderColor='rgba(110,231,183,.35)';
   document.getElementById('imgPreviews').innerHTML='';
-  imgFiles=[]; imgPendingNormalized=[];
+  imgFiles=[]; imgFileStates=[]; imgPendingNormalized=[];
 }
 
-// ── UI UTILS ──────────────────────────────────────────────
+// UI UTILS
 function toggleCard(id) {
-  document.getElementById(id).classList.toggle('open');
-  document.getElementById(id+'Chev')?.classList.toggle('open');
+  const body = document.getElementById(id);
+  if (!body) return;
+  const wasOpen = body.classList.contains('open');
+  collapseAllCards();
+  if (wasOpen) return;
+  body.classList.add('open');
+  body.closest('.card')?.classList.add('is-open');
+  document.getElementById(id+'Chev')?.classList.add('open');
+  body.scrollIntoView({ behavior:'smooth', block:'nearest' });
 }
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
@@ -2160,7 +2731,7 @@ function showAlertSuccess(msg) { const a=document.getElementById('alertProv'); d
 function showAlertErr(msg)     { const a=document.getElementById('alertProv'); document.getElementById('alertProvText').textContent=msg; a.className='alert alert-warn'; a.style.display='flex'; }
 function hideAlert()           { document.getElementById('alertProv').style.display='none'; }
 
-// ── IMPORTAR TABS ─────────────────────────────────────────
+// IMPORTAR TABS
 function importSwitchTab(tab) {
   const isTabla = tab==='tabla';
   document.getElementById('tabTabla').style.display  = isTabla?'block':'none';
@@ -2171,26 +2742,182 @@ function importSwitchTab(tab) {
   document.getElementById('tabBtnImagen').style.color      = isTabla?'var(--muted)':'var(--accent)';
 }
 
-// ── IMPORTAR IMAGEN / PDF ─────────────────────────────────
+// IMPORTAR IMAGEN / PDF
 // Mapa file → fingerprint calculado (async, se llena al seleccionar)
 let _imgFileFPs = {};
+
+function imgStateLabel(st) {
+  const labels = {
+    listo:'Listo',
+    pendiente:'Pendiente',
+    duplicado:'Duplicado',
+    'no-leido':'No leído',
+    problema:'Con problema',
+    procesado:'Procesado'
+  };
+  return labels[st] || 'Listo';
+}
+
+function imgStateTone(st) {
+  if (st === 'duplicado' || st === 'pendiente') return 'warn';
+  if (st === 'no-leido' || st === 'problema') return 'danger';
+  return 'ok';
+}
+
+function imgEnsureStates(files) {
+  imgFileStates = files.map(file => {
+    const prev = imgFileStates.find(s => s.file && s.file.name === file.name && s.file.size === file.size && s.file.lastModified === file.lastModified);
+    return prev || { file, status:'listo', detail:'Listo para procesar', removed:false, processAnyway:false, problem:'' };
+  });
+}
+
+function imgActiveStates() {
+  return imgFileStates.filter(s => !s.removed);
+}
+
+function imgProcessableStates() {
+  return imgActiveStates().filter(s => {
+    if (s.status === 'duplicado') return false;
+    if (s.status === 'pendiente' || s.status === 'procesado') return false;
+    if ((s.status === 'problema' || s.status === 'no-leido') && !s.processAnyway) return false;
+    return true;
+  });
+}
+
+function imgUpdateProcessButton() {
+  const btn = document.getElementById('imgProcBtn');
+  if (!btn) return;
+  const count = imgProcessableStates().length;
+  btn.style.display = imgActiveStates().length ? 'flex' : 'none';
+  btn.innerHTML = `<span>✨ Procesar ${count} válido${count!==1?'s':''} con Claude</span>`;
+  btn.disabled = count === 0;
+}
+
+function imgRenderLoadSummary() {
+  const el = document.getElementById('imgLoadSummary');
+  if (!el) return;
+  const states = imgActiveStates();
+  if (!states.length) { el.style.display='none'; el.innerHTML=''; return; }
+  const count = key => states.filter(s => s.status === key).length;
+  const validos = imgProcessableStates().length;
+  el.innerHTML = [
+    `<div class="load-pill"><strong>${states.length}</strong> cargados</div>`,
+    `<div class="load-pill"><strong>${validos}</strong> listos</div>`,
+    `<div class="load-pill"><strong>${count('duplicado')}</strong> duplicados</div>`,
+    `<div class="load-pill"><strong>${count('no-leido') + count('problema')}</strong> con problema</div>`,
+    `<div class="load-pill"><strong>${count('pendiente')}</strong> pendientes</div>`
+  ].join('');
+  el.style.display='flex';
+  imgUpdateProcessButton();
+}
+
+function imgRemoveFile(idx) {
+  const state = imgFileStates[idx];
+  if (!state) return;
+  addLoadProblemHistory('Quitado de esta tanda', `${idx+1} - ${state.file.name}`);
+  imgFileStates.splice(idx, 1);
+  imgFiles = imgFileStates.map(s => s.file);
+  renderImgPreviews(imgFiles, { keepStates:true });
+  if (!imgFiles.length) {
+    document.getElementById('imgDropZone').style.borderColor='rgba(110,231,183,.35)';
+    imgSetStatus('No quedan comprobantes en esta tanda. Podés seleccionar otros archivos.', 'warn');
+  }
+}
+
+function imgRetryFile(idx) {
+  const state = imgFileStates[idx];
+  if (!state) return;
+  state.status = 'listo';
+  state.detail = 'Listo para reintentar';
+  state.processAnyway = false;
+  renderImgPreviews(imgFiles, { keepStates:true });
+}
+
+function imgProcessAnyway(idx) {
+  const state = imgFileStates[idx];
+  if (!state) return;
+  state.processAnyway = true;
+  state.status = 'listo';
+  state.detail = 'Se procesará aunque haya tenido advertencia';
+  renderImgPreviews(imgFiles, { keepStates:true });
+}
+
+function imgShowDetail(idx) {
+  const state = imgFileStates[idx];
+  if (!state) return;
+  imgSetStatus(`<strong>Detalle del comprobante ${idx+1}</strong><br>${esc(state.file.name)}<br>${esc(state.detail || 'Sin detalle adicional.')}<br><br>Acciones: quitá este archivo, reintentá, procesalo igual o procesá solo los válidos.`, imgStateTone(state.status));
+}
+
+function addLoadProblemHistory(title, detail) {
+  imgProblemHistory.unshift({ title, detail, at:new Date().toLocaleString('es-AR') });
+  imgProblemHistory = imgProblemHistory.slice(0, 8);
+  try { localStorage.setItem(loadProblemHistoryStorageKey(), JSON.stringify(imgProblemHistory)); } catch(e) {}
+  renderLoadProblemHistory();
+}
+
+function loadProblemHistoryInit() {
+  try { imgProblemHistory = JSON.parse(localStorage.getItem(loadProblemHistoryStorageKey()) || '[]'); }
+  catch(e) { imgProblemHistory = []; }
+  renderLoadProblemHistory();
+}
+
+function renderLoadProblemHistory() {
+  const el = document.getElementById('imgProblemHistory');
+  if (!el) return;
+  if (!imgProblemHistory.length) { el.style.display='none'; el.innerHTML=''; return; }
+  el.innerHTML = `<div class="problem-history-title">Últimos problemas de carga</div>` +
+    imgProblemHistory.slice(0,5).map(h => `<div><strong>${esc(h.title)}</strong> - ${esc(h.detail)} <span style="color:var(--muted)">(${esc(h.at)})</span></div>`).join('');
+  el.style.display='block';
+}
 
 function imgOnSelect(evt) {
   const files = Array.from(evt.target.files).slice(0,5);
   if (!files.length) return;
   imgFiles = files; evt.target.value='';
   _imgFileFPs = {};
+  imgDuplicateOmitidos = [];
+  imgEnsureStates(files);
+  renderImgPreviews(files);
+}
+
+function renderImgPreviews(files, opts={}) {
   const prev = document.getElementById('imgPreviews');
-  prev.innerHTML=''; prev.style.display='flex';
-  files.forEach(f => {
+  if (!opts.keepStates) imgEnsureStates(files);
+  prev.innerHTML='';
+  if (!imgFileStates.length) {
+    prev.style.display='none';
+    imgRenderLoadSummary();
+    return;
+  }
+  prev.style.display='flex';
+  imgFileStates.forEach((state, i) => {
+    const f = state.file;
     const isPdf = f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf');
-    prev.innerHTML += isPdf
-      ? `<div style="flex:1;min-width:100px;max-width:19%;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:14px;text-align:center"><div style="font-size:28px">📄</div><div style="font-size:10px;color:var(--warn);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name}</div></div>`
-      : `<div style="flex:1;min-width:100px;max-width:19%"><img src="${URL.createObjectURL(f)}" style="width:100%;border-radius:8px;border:1px solid var(--border);max-height:140px;object-fit:cover"><div style="font-size:9px;color:var(--muted);margin-top:3px;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${f.name}</div></div>`;
+    const tone = imgStateTone(state.status);
+    const actions = (state.status === 'duplicado' || state.status === 'no-leido' || state.status === 'problema')
+      ? `<div class="file-preview-actions">
+          <button class="mini-action danger" onclick="imgRemoveFile(${i});event.stopPropagation()">Quitar</button>
+          <button class="mini-action warn" onclick="imgRetryFile(${i});event.stopPropagation()">Reintentar</button>
+          <button class="mini-action" onclick="imgProcessAnyway(${i});event.stopPropagation()">Procesar igual</button>
+          <button class="mini-action" onclick="imgShowDetail(${i});event.stopPropagation()">Ver detalle</button>
+        </div>`
+      : '';
+    prev.innerHTML += `
+      <div class="file-preview-card status-${state.status}">
+        <div class="file-preview-num">${i+1}</div>
+        <button class="file-preview-remove" title="Quitar de esta tanda" onclick="imgRemoveFile(${i});event.stopPropagation()">×</button>
+        ${isPdf
+          ? `<div style="font-size:34px;text-align:center;padding:18px 0 12px">📄</div>`
+          : `<img src="${URL.createObjectURL(f)}" style="width:100%;border-radius:7px;border:1px solid var(--border);height:120px;object-fit:cover">`}
+        <div class="file-preview-name">${esc(f.name)}</div>
+        <div class="file-preview-status ${tone}">${imgStateLabel(state.status)}</div>
+        ${state.detail ? `<div style="font-size:9px;color:var(--muted);text-align:center;margin-top:3px;line-height:1.25">${esc(state.detail)}</div>` : ''}
+        ${actions}
+      </div>`;
     // Calcular SHA-256 en background (no bloquea la UI)
     fpFromFile(f).then(fp => { _imgFileFPs[f.name] = fp; });
   });
-  document.getElementById('imgProcBtn').style.display='flex';
+  imgRenderLoadSummary();
   document.getElementById('imgStatus').style.display='none';
   document.getElementById('imgDropZone').style.borderColor='rgba(110,231,183,.7)';
 }
@@ -2319,11 +3046,70 @@ function imgSetStatus(msg, type='info') {
   el.className=`alert alert-${type}`; el.innerHTML=msg; el.style.display='flex';
 }
 
+function resetImageImportUI(message, type='info') {
+  const btn = document.getElementById('imgProcBtn');
+  if (btn) { btn.disabled=false; btn.innerHTML='<span>✨ Extraer datos con Claude</span>'; }
+  if (message) imgSetStatus(message, type);
+  imgUpdateProcessButton();
+}
+
+function buildDuplicateSummary(duplicados) {
+  return duplicados.map(f => {
+    const fp = _imgFileFPs[f.name];
+    const info = compInfoFromRows(fp);
+    const detail = info
+      ? `${esc(info.idComp)} - ${esc(info.provs)} - ${esc(info.fecha)} - ${info.items} arts.`
+      : esc(f.name);
+    return `<li style="margin-bottom:7px"><strong style="color:var(--warn)">${esc(f.name)}</strong><br><span style="color:var(--muted)">${detail}</span></li>`;
+  }).join('');
+}
+
 function selectModel() {
-  const hasPdf  = imgFiles.some(f=>f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf'));
-  const isMulti = imgFiles.length>2;
-  const isLarge = imgFiles.some(f=>f.size>500*1024);
+  const files = imgProcessableStates().map(s => s.file);
+  const hasPdf  = files.some(f=>f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf'));
+  const isMulti = files.length>2;
+  const isLarge = files.some(f=>f.size>500*1024);
   return (hasPdf||isMulti||isLarge) ? 'claude-sonnet-4-5' : 'claude-haiku-4-5';
+}
+
+function parseClaudeItems(rawText) {
+  const clean = (rawText || '').replace(/```json|```/gi,'').trim();
+  const attempts = [clean];
+  const arr = clean.match(/\[[\s\S]*\]/);
+  if (arr) attempts.push(arr[0]);
+  const obj = clean.match(/\{[\s\S]*\}/);
+  if (obj) attempts.push(obj[0]);
+  for (const text of attempts) {
+    try {
+      const parsed = JSON.parse(text);
+      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed.items)) return parsed.items;
+      if (Array.isArray(parsed.articulos)) return parsed.articulos;
+      if (Array.isArray(parsed.rows)) return parsed.rows;
+    } catch(e) {}
+  }
+  throw new Error('Claude no devolvio una tabla legible. Reintenta con una foto mas nitida o procesando menos archivos por vez.');
+}
+
+function showImportRecoveryError(message, failedStates=imgProcessableStates()) {
+  failedStates.forEach(s => {
+    s.status = 'no-leido';
+    s.detail = message || 'Claude no devolvió una tabla legible';
+    s.processAnyway = false;
+  });
+  const filesHtml = failedStates.length
+    ? `<br><br><strong>Comprobantes con problema:</strong><ol style="margin:6px 0 0 18px">${failedStates.map(s => {
+        const idx = imgFileStates.indexOf(s);
+        return `<li>${esc((idx>=0?idx+1:'?') + ' - ' + s.file.name)}</li>`;
+      }).join('')}</ol>`
+    : '';
+  const title = failedStates.length > 1 ? 'No pude leer los comprobantes.' : 'No pude leer el comprobante.';
+  imgSetStatus(`<div><strong>${title}</strong><br>${esc(message)}${filesHtml}<br><br><strong>Qué hacer ahora:</strong><br>1. Quitá con la X los comprobantes que no quieras procesar ahora.<br>2. Si la imagen se ve borrosa o chica, volvé a sacar la foto más cerca y con buena luz.<br>3. Si cargaste varios archivos, probá procesar solo uno o usá "Procesar solo válidos".<br>4. Si el archivo es correcto, tocá "Reintentar" o "Procesar igual".</div>`, 'warn');
+  addLoadProblemHistory(title, failedStates.map(s => {
+    const idx = imgFileStates.indexOf(s);
+    return `${idx>=0?idx+1:'?'} - ${s.file.name}`;
+  }).join(', '));
+  renderImgPreviews(imgFiles, { keepStates:true });
 }
 
 async function imgProcesar() {
@@ -2336,53 +3122,83 @@ async function imgProcesar() {
     return;
   }
   if(alertDiv) alertDiv.style.display='none';
+  const creditState = await creditRefresh({ silent:true });
+  if (creditState && creditState.status === 'no_credit') {
+    imgSetStatus('Sin credito API disponible. Actualiza el credito total o revisa Anthropic antes de procesar comprobantes.', 'warn');
+    return;
+  }
 
-  // ── Verificar duplicados con SHA-256 ANTES de gastar API ──
+  let processStates = imgProcessableStates();
+  if (!processStates.length) {
+    imgSetStatus('No hay comprobantes válidos para procesar. Quitá duplicados/problemas con la X, reintentá alguno o seleccioná otros archivos.', 'warn');
+    return;
+  }
+
+  // Verificar duplicados con SHA-256 ANTES de gastar API
   imgSetStatus('⏳ Verificando comprobantes...','info');
   // Asegurar que todos los FPs estén calculados (pueden no haber terminado aún)
-  for (const file of imgFiles) {
+  for (const file of imgActiveStates().map(s => s.file)) {
     if (!_imgFileFPs[file.name]) {
       _imgFileFPs[file.name] = await fpFromFile(file);
     }
   }
-  const duplicados = imgFiles.filter(f => compIsDuplicate(_imgFileFPs[f.name]));
+  const duplicados = imgActiveStates().filter(s => !s.processAnyway && compIsDuplicate(_imgFileFPs[s.file.name]));
   if (duplicados.length) {
-    const dup  = duplicados[0];
-    const fp   = _imgFileFPs[dup.name];
-    const info = compInfoFromRows(fp);
-    const det  = info
-      ? `ID: <strong>${info.idComp}</strong><br>Proveedor: <strong>${info.provs}</strong><br>Fecha: ${info.fecha} · ${info.tipo}<br>Artículos: ${info.items} · Total: $${fmtNum(info.total,0)}`
-      : `Archivo: <strong>${dup.name}</strong>`;
+    duplicados.forEach(s => {
+      s.status = 'duplicado';
+      s.detail = 'Ya fue cargado antes. Podés quitarlo o procesarlo igual.';
+      s.duplicateInfo = compInfoFromRows(_imgFileFPs[s.file.name]);
+    });
+    imgDuplicateOmitidos = duplicados.map(s => ({
+      name: s.file.name,
+      fp: _imgFileFPs[s.file.name],
+      info: compInfoFromRows(_imgFileFPs[s.file.name])
+    }));
+    renderImgPreviews(imgFiles, { keepStates:true });
     document.getElementById('dupDetalle').innerHTML =
-      `<span style="color:var(--muted)">Archivo duplicado:</span> <strong style="color:var(--warn)">${dup.name}</strong><br><br>${det}`;
-    openModal('modalDuplicado');
-    imgSetStatus('','info');
-    document.getElementById('imgStatus').style.display='none';
-    return;
+      `<div style="margin-bottom:8px"><strong>${duplicados.length}</strong> comprobante${duplicados.length!==1?'s':''} duplicado${duplicados.length!==1?'s':''} detectado${duplicados.length!==1?'s':''}.</div><ul style="padding-left:18px;margin:0">${buildDuplicateSummary(duplicados.map(s=>s.file))}</ul>`;
+    processStates = imgProcessableStates();
+    if (!processStates.length) {
+      openModal('modalDuplicado');
+      resetImageImportUI('Todos los comprobantes seleccionados parecen duplicados. Quitá los que no quieras procesar o marcá "Procesar igual" en alguno.', 'warn');
+      addLoadProblemHistory('Duplicados detectados', duplicados.map(s => s.file.name).join(', '));
+      return;
+    }
+    imgSetStatus(`${duplicados.length} duplicado${duplicados.length!==1?'s':''} detectado${duplicados.length!==1?'s':''}. Se procesarán solo ${processStates.length} comprobante${processStates.length!==1?'s':''} válido${processStates.length!==1?'s':''}; podés quitar duplicados con la X.`, 'warn');
+    addLoadProblemHistory('Duplicados omitidos de esta corrida', duplicados.map(s => s.file.name).join(', '));
   }
 
   const btn = document.getElementById('imgProcBtn');
   btn.disabled=true; btn.innerHTML='<span style="opacity:.7">⏳ Procesando con Claude...</span>';
   imgSetStatus('⏳ Verificando resolución de imágenes...','info');
   try {
-    // ── Verificar resolución mínima de cada imagen ──
-    for (const file of imgFiles) {
+    // Verificar resolución mínima de cada imagen
+    for (const state of processStates) {
+      const file = state.file;
       const isPdf = file.type==='application/pdf'||file.name.toLowerCase().endsWith('.pdf');
       if (!isPdf) {
         const {ok, width, height} = await checkImageResolution(file);
-        if (!ok) {
+        if (!ok && !state.processAnyway) {
+          state.status = 'problema';
+          state.detail = `Baja resolución (${width}x${height}px). Mínimo recomendado: ${IMG_MIN_WIDTH}x${IMG_MIN_HEIGHT}px.`;
+          addLoadProblemHistory('Imagen de baja resolución', `${imgFileStates.indexOf(state)+1} - ${file.name}`);
+          renderImgPreviews(imgFiles, { keepStates:true });
           btn.disabled=false; btn.innerHTML='<span>✨ Extraer datos con Claude</span>';
-          imgSetStatus(`⚠️ Imagen de baja resolución: <strong>${file.name}</strong> (${width}×${height}px). Mínimo recomendado: ${IMG_MIN_WIDTH}×${IMG_MIN_HEIGHT}px. La legibilidad puede ser insuficiente. Tomá la foto de nuevo con mejor calidad o más cerca del documento.`,'warn');
+          imgSetStatus(`⚠️ Imagen de baja resolución: <strong>comprobante ${imgFileStates.indexOf(state)+1} - ${esc(file.name)}</strong> (${width}x${height}px). Mínimo recomendado: ${IMG_MIN_WIDTH}x${IMG_MIN_HEIGHT}px. Quitalo, reintentá con una foto mejor o marcá "Procesar igual".`,'warn');
           return;
         }
       }
     }
     imgSetStatus('⏳ Preparando archivos...','info');
     const contentParts=[];
-    for (const file of imgFiles) {
+    for (const state of processStates) {
+      const file = state.file;
+      state.status = 'pendiente';
+      state.detail = 'Enviado a Claude';
       imgSetStatus(`⏳ Leyendo ${file.name}...`,'info');
       contentParts.push(await fileToContentPart(file));
     }
+    renderImgPreviews(imgFiles, { keepStates:true });
     contentParts.push({type:'text',text:'Extraé todos los artículos de este/estos comprobante/s y devolvé el JSON.'});
     imgSetStatus('⏳ Enviando a Claude...','info');
     const hoy = new Date().toLocaleDateString('es-AR');
@@ -2394,10 +3210,7 @@ async function imgProcesar() {
     });
     imgSetStatus('⏳ Procesando respuesta...','info');
     const rawText = data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-    const clean   = rawText.replace(/```json|```/gi,'').trim();
-    let items;
-    try { items=JSON.parse(clean); }
-    catch(e) { const m=clean.match(/\[[\s\S]*\]/); if(m) items=JSON.parse(m[0]); else throw new Error('No se pudo parsear la respuesta de Claude.'); }
+    const items = parseClaudeItems(rawText);
     if (!Array.isArray(items)||!items.length) throw new Error('Claude no encontró artículos en el archivo.');
     const INVALIDOS = ['ELEMENTA','KARINA ZILLI'];
     const normalized = items.map(r=>({
@@ -2424,8 +3237,8 @@ async function imgProcesar() {
       if (!compMap.has(key)) {
         // Buscar el archivo que más probablemente corresponde a este proveedor
         // (heurística: si hay 1 archivo = todos del mismo; si hay varios = por orden)
-        const fileIdx = Math.min(compMap.size, imgFiles.length - 1);
-        const file    = imgFiles[fileIdx];
+        const fileIdx = Math.min(compMap.size, processStates.length - 1);
+        const file    = processStates[fileIdx].file;
         const fp      = _imgFileFPs[file.name] || `sha256:${file.name}`;
         const serial  = compNextSerial();
         const suffix  = compSuffix(file.name);
@@ -2436,16 +3249,19 @@ async function imgProcesar() {
       r._fp     = fp;
     });
 
+    processStates.forEach(s => { s.status = 'procesado'; s.detail = 'Leído por Claude'; });
+    renderImgPreviews(imgFiles, { keepStates:true });
     imgMostrarConfirmacion(normalized);
   } catch(err) {
     console.error(err);
-    imgSetStatus(`❌ Error: ${err.message}`,'warn');
+    showImportRecoveryError(err.message, processStates);
   } finally {
     btn.disabled=false; btn.innerHTML='<span>✨ Extraer datos con Claude</span>';
+    imgUpdateProcessButton();
   }
 }
 
-// ── CONFIRMACIÓN IMPORTACIÓN IMAGEN ───────────────────────
+// CONFIRMACIÓN IMPORTACIÓN IMAGEN
 function imgMostrarConfirmacion(normalized) {
   imgPendingNormalized = normalized;
   const map={};
@@ -2462,14 +3278,14 @@ function imgMostrarConfirmacion(normalized) {
   html+=`<div style="flex:1;min-width:80px;background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.25);border-radius:8px;padding:10px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--accent2)">${provs.length}</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Proveedores</div></div>`;
   html+=`<div style="flex:1;min-width:80px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:8px;padding:10px;text-align:center"><div style="font-size:14px;font-weight:800;color:var(--warn)">$${fmtNum(grandTotal,0)}</div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Total</div></div></div>`;
   if (idsAsignados.length) {
-    html+=`<div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:8px;padding:9px 12px;margin-bottom:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">🆔 ID${idsAsignados.length>1?'s':''} asignado${idsAsignados.length>1?'s':''}: <strong style="color:var(--accent)">${idsAsignados.join(' · ')}</strong></div>`;
+    html+=`<div style="background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.2);border-radius:8px;padding:9px 12px;margin-bottom:12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">🆔 ID${idsAsignados.length>1?'s':''} asignado${idsAsignados.length>1?'s':''}: <strong style="color:var(--accent)">${idsAsignados.join(' - ')}</strong></div>`;
   }
   html+='<div style="border:1px solid var(--border);border-radius:8px;overflow:hidden"><table style="width:100%;border-collapse:collapse;font-family:DM Mono,monospace;font-size:11px"><thead><tr style="background:var(--surface2)"><th style="padding:8px 10px;text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.5px">Proveedor</th><th style="padding:8px 10px;text-align:right;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.5px">Arts.</th><th style="padding:8px 10px;text-align:right;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.5px">Total</th></tr></thead><tbody>';
   provs.forEach((p,i)=>{
     const d=map[p];
     const isNew=!patrones.find(x=>x.nombre.toUpperCase()===p.toUpperCase());
     const bg=i%2===0?'':'background:rgba(255,255,255,.015)';
-    html+=`<tr style="${bg}"><td style="padding:8px 10px"><span style="font-weight:700;color:var(--text)">${p}</span>${isNew?'<span style="background:rgba(110,231,183,.15);color:var(--accent);font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px">NUEVO</span>':''}<br><span style="font-size:9px;color:var(--muted)">${[...d.tipos].join(' · ')}</span></td><td style="padding:8px 10px;text-align:right;color:var(--muted)">${d.items}</td><td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--accent)">$${fmtNum(d.total,0)}</td></tr>`;
+    html+=`<tr style="${bg}"><td style="padding:8px 10px"><span style="font-weight:700;color:var(--text)">${p}</span>${isNew?'<span style="background:rgba(110,231,183,.15);color:var(--accent);font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px">NUEVO</span>':''}<br><span style="font-size:9px;color:var(--muted)">${[...d.tipos].join(' - ')}</span></td><td style="padding:8px 10px;text-align:right;color:var(--muted)">${d.items}</td><td style="padding:8px 10px;text-align:right;font-weight:700;color:var(--accent)">$${fmtNum(d.total,0)}</td></tr>`;
   });
   if (provs.length>1) html+=`<tr style="background:rgba(110,231,183,.05);border-top:1px solid var(--border)"><td style="padding:8px 10px;font-weight:800;color:var(--text)">TOTAL</td><td style="padding:8px 10px;text-align:right;font-weight:800">${normalized.length}</td><td style="padding:8px 10px;text-align:right;font-weight:800;color:var(--accent)">$${fmtNum(grandTotal,0)}</td></tr>`;
   html+='</tbody></table></div>';
@@ -2493,30 +3309,35 @@ function imgConfirmarImport() {
   migrarIdComprobante(); // por si algún row quedó sin _idComp
   autoSave(); renderAll();
   closeModal('modalImgConfirm');
-  creditAddImage(imgFiles.length||1);
+  creditRefresh({ silent:true });
   collapseAllCards();
-  imgSetStatus(`<strong>${imgPendingNormalized.length} artículos</strong> importados correctamente.`,'success');
+  const omitidos = imgDuplicateOmitidos.length;
+  const msgOmitidos = omitidos ? ` ${omitidos} comprobante${omitidos!==1?'s':''} duplicado${omitidos!==1?'s':''} omitido${omitidos!==1?'s':''}.` : '';
+  imgSetStatus(`<strong>${imgPendingNormalized.length} artículos</strong> importados correctamente.${msgOmitidos}`,'success');
   document.getElementById('importCardSub').textContent=imgPendingNormalized.length+' artículos importados';
-  imgPendingNormalized=[]; imgFiles=[];
+  imgPendingNormalized=[]; imgFiles=[]; imgFileStates=[]; imgDuplicateOmitidos=[];
   document.getElementById('imgPreviews').style.display='none';
   document.getElementById('imgPreviews').innerHTML='';
+  document.getElementById('imgLoadSummary').style.display='none';
+  document.getElementById('imgLoadSummary').innerHTML='';
   document.getElementById('imgDropZone').style.borderColor='rgba(110,231,183,.35)';
   document.getElementById('imgProcBtn').style.display='none';
 }
 
 function imgCancelarImport() {
-  imgPendingNormalized=[]; closeModal('modalImgConfirm');
+  imgPendingNormalized=[]; imgDuplicateOmitidos=[]; closeModal('modalImgConfirm');
+  imgFileStates.forEach(s => { if (s.status === 'procesado' || s.status === 'pendiente') { s.status='listo'; s.detail='Listo para procesar'; } });
+  renderImgPreviews(imgFiles, { keepStates:true });
   imgSetStatus('Importación cancelada.','warn');
   setTimeout(()=>{ document.getElementById('imgStatus').style.display='none'; }, 3000);
 }
 
-// ── ASIGNAR PROVEEDOR EN TABLA ────────────────────────────
+// ASIGNAR PROVEEDOR EN TABLA
 function abrirEditProv(rowIdx) {
   mepRowIdx=rowIdx; mepSelProv=null;
   const r=rows[rowIdx];
-  document.getElementById('mepInfo').innerHTML=`Comprobante: <strong>${r.fecha} · ${r.tipo}</strong><br>Proveedor actual: <strong style="color:var(--warn)">${r.proveedor}</strong><br>Afecta a todas las filas del mismo proveedor+fecha+tipo.`;
-  document.getElementById('mepSearch').value='';
-  document.getElementById('mepDrop').style.display='none';
+  document.getElementById('mepInfo').innerHTML=`Comprobante: <strong>${r.fecha} - ${r.tipo}</strong><br>Proveedor actual: <strong style="color:var(--warn)">${r.proveedor}</strong><br>Afecta a todas las filas del mismo proveedor+fecha+tipo.`;
+  mepPopulateSelects(r);
   document.getElementById('mepSelWrap').style.display='none';
   document.getElementById('mepNuevoNombre').value='';
   document.getElementById('mepNuevoCuit').value='';
@@ -2524,22 +3345,27 @@ function abrirEditProv(rowIdx) {
   openModal('modalEditProv');
 }
 
-function mepOnSearch() {
-  const val=document.getElementById('mepSearch').value.trim();
-  const drop=document.getElementById('mepDrop');
-  if (!val) { drop.style.display='none'; return; }
-  const q=val.toLowerCase();
-  const matches=patrones.reduce((acc,p,i)=>{ if(p.nombre.toLowerCase().includes(q)) acc.push({p,i}); return acc; },[]).slice(0,12);
-  if (!matches.length) { drop.style.display='none'; return; }
-  drop.innerHTML=matches.map(({p,i})=>`<div style="padding:10px 13px;font-size:12px;font-family:DM Mono,monospace;cursor:pointer;border-bottom:1px solid var(--border);color:var(--text)" onmouseover="this.style.background='rgba(129,140,248,.15)'" onmouseout="this.style.background='transparent'" onclick="mepSelectProv(${i})"><span style="font-weight:700">${p.nombre}</span><span style="color:var(--muted);font-size:10px;margin-left:6px">${p.cuit}</span></div>`).join('');
-  drop.style.display='block';
+function mepPopulateSelects(row) {
+  const confirmed = patrones.filter(p => !p.nuevo && p.nombre).sort((a,b)=>a.nombre.localeCompare(b.nombre,'es'));
+  document.getElementById('mepProvSelect').innerHTML = '<option value="">— seleccionar proveedor confirmado —</option>' +
+    confirmed.map(p=>`<option value="${escapeAttr(p.nombre)}">${p.nombre} - ${p.cuit||'no encontrado'}</option>`).join('');
+  const tipos = uniqueSorted(patrones.map(p=>p.tipo).concat(rows.map(r=>r.tipo)).filter(Boolean));
+  document.getElementById('mepTipo').innerHTML = tipos.map(t=>`<option value="${escapeAttr(t)}" ${row.tipo===t?'selected':''}>${t}</option>`).join('');
+  const cols = uniqueSorted(patrones.map(p=>p.cols).filter(Boolean));
+  document.getElementById('mepCols').innerHTML = cols.map(c=>`<option value="${escapeAttr(c)}">${c}</option>`).join('');
+}
+
+function mepSelectProvFromSelect() {
+  const name = document.getElementById('mepProvSelect').value;
+  if (!name) { mepClearSel(); return; }
+  const idx = patrones.findIndex(p=>p.nombre===name);
+  mepSelectProv(idx);
 }
 
 function mepSelectProv(idx) {
   const p=patrones[idx]; if(!p) return;
   mepSelProv={nombre:p.nombre,cuit:p.cuit};
-  document.getElementById('mepSearch').value=p.nombre;
-  document.getElementById('mepDrop').style.display='none';
+  document.getElementById('mepProvSelect').value=p.nombre;
   document.getElementById('mepSelNombre').textContent=p.nombre;
   document.getElementById('mepSelCuit').textContent=p.cuit;
   document.getElementById('mepSelWrap').style.display='block';
@@ -2549,7 +3375,7 @@ function mepSelectProv(idx) {
 
 function mepClearSel() {
   mepSelProv=null;
-  document.getElementById('mepSearch').value='';
+  document.getElementById('mepProvSelect').value='';
   document.getElementById('mepSelWrap').style.display='none';
 }
 
@@ -2566,26 +3392,30 @@ function mepConfirmar() {
   else { alertEl.textContent='Seleccioná un proveedor o ingresá uno nuevo.'; alertEl.style.display='flex'; return; }
   const r=rows[mepRowIdx];
   const provAnterior=r.proveedor, fecha=r.fecha, tipo=r.tipo;
+  const tipoElegido=document.getElementById('mepTipo').value || tipo || 'No especificado';
+  const colsElegidas=document.getElementById('mepCols').value || 'Asignado desde tabla';
   let count=0;
-  rows.forEach(row=>{ if(row.proveedor===provAnterior&&row.fecha===fecha&&row.tipo===tipo){row.proveedor=nuevoNombre;row.cuit=nuevoCuit;count++;} });
-  rows.forEach(row=>{ if(row.proveedor===provAnterior){row.proveedor=nuevoNombre;row.cuit=nuevoCuit;} });
+  rows.forEach(row=>{ if(row.proveedor===provAnterior&&row.fecha===fecha&&row.tipo===tipo){row.proveedor=nuevoNombre;row.cuit=nuevoCuit;row.tipo=tipoElegido;count++;} });
+  rows.forEach(row=>{ if(row.proveedor===provAnterior){row.proveedor=nuevoNombre;row.cuit=nuevoCuit;if(!row.tipo||row.tipo===tipo) row.tipo=tipoElegido;} });
   const idxPatron=patrones.findIndex(p=>p.nombre.toUpperCase()===nuevoNombre.toUpperCase());
-  if (idxPatron>=0) { if(patrones[idxPatron].cuit==='no encontrado'&&nuevoCuit!=='no encontrado'){patrones[idxPatron].cuit=nuevoCuit;patrones[idxPatron].editado=true;} }
-  else patrones.push({id:'P'+String(patrones.length+1).padStart(2,'0'),nombre:nuevoNombre,cuit:nuevoCuit,tipo:tipo||'No especificado',cols:'Asignado desde tabla',notas:'',nuevo:true});
+  if (idxPatron>=0) {
+    Object.assign(patrones[idxPatron], {cuit:nuevoCuit,tipo:tipoElegido,cols:colsElegidas,nuevo:false,editado:true});
+  } else patrones.push({id:'P'+String(patrones.length+1).padStart(2,'0'),nombre:nuevoNombre,cuit:nuevoCuit,tipo:tipoElegido,cols:colsElegidas,notas:'',nuevo:false,editado:true});
+  patrones = patrones.filter(p => p.nombre.toUpperCase() !== provAnterior.toUpperCase() || !p.nuevo);
   autoSave(); renderAll(); closeModal('modalEditProv');
   showAlertSuccess(`✅ Proveedor actualizado en ${count} fila${count!==1?'s':''}.`);
 }
 
 // Cerrar dropdowns al tocar fuera
 document.addEventListener('click', e=>{
-  ['varProvDrop','evProvDrop','mepDrop'].forEach(id=>{
+  ['varProvDrop'].forEach(id=>{
     const drop=document.getElementById(id);
-    const inp=document.getElementById(id==='varProvDrop'?'varFiltroProv':id==='evProvDrop'?'evProv':'mepSearch');
+    const inp=document.getElementById('varFiltroProv');
     if(drop&&inp&&!drop.contains(e.target)&&e.target!==inp) drop.style.display='none';
   });
 });
 
-// ── VARIACIONES MENSUALES ─────────────────────────────────
+// VARIACIONES MENSUALES
 function varParseFecha(f) {
   if (!f) return null;
   const s=String(f).trim();
@@ -2676,7 +3506,7 @@ function varRender() {
   filtradas.sort((a,b)=>b.pct-a.pct);
   const [mmA,yyA]=mesA.split('/'), [mmB,yyB]=mesB.split('/');
   const labelA=mesNombre(parseInt(mmA))+' '+yyA, labelB=mesNombre(parseInt(mmB))+' '+yyB;
-  document.getElementById('varSub').textContent=`${variaciones.length} artículos · ${alzas.length} alzas · ${bajas.length} bajas`;
+  document.getElementById('varSub').textContent=`${variaciones.length} artículos - ${alzas.length} alzas - ${bajas.length} bajas`;
   if (!filtradas.length) { content.innerHTML='<div class="empty" style="padding:20px 0"><div class="empty-icon" style="font-size:24px">🔍</div><div class="empty-text">Sin artículos con variación en esos meses.</div></div>'; return; }
   let html=`<div class="scroll-hint">← deslizá →</div><div class="table-wrap"><table style="min-width:520px"><thead><tr><th>Proveedor</th><th>Descripción</th><th style="text-align:right">${labelA}</th><th style="text-align:right">${labelB}</th><th style="text-align:right">Var. %</th></tr></thead><tbody>`;
   filtradas.forEach(v=>{
@@ -2692,7 +3522,48 @@ function varRender() {
   content.innerHTML=html;
 }
 
-// ── EVOLUCIÓN ARTÍCULO ─────────────────────────────────────
+// EVOLUCIÓN ARTÍCULO
+function uniqueSorted(list) {
+  return [...new Set(list.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'es'));
+}
+
+function evPopulateSelects() {
+  const provSel = document.getElementById('evProvSelect');
+  const descSel = document.getElementById('evDescSelect');
+  if (!provSel || !descSel) return;
+  const currentProv = evProvSel || provSel.value || '';
+  const provs = uniqueSorted(rows.map(r=>r.proveedor));
+  provSel.innerHTML = '<option value="">Todos los proveedores</option>' +
+    provs.map(p=>`<option value="${escapeAttr(p)}" ${currentProv===p?'selected':''}>${p}</option>`).join('');
+  if (currentProv && provs.includes(currentProv)) evProvSel = currentProv;
+  else if (!currentProv) evProvSel = null;
+
+  const pool = evProvSel ? rows.filter(r=>r.proveedor===evProvSel) : rows;
+  const descs = uniqueSorted(pool.map(r=>r.descripcion));
+  const currentDesc = evDescSel && descs.includes(evDescSel) ? evDescSel : '';
+  descSel.innerHTML = '<option value="">— seleccionar artículo —</option>' +
+    descs.map(d=>`<option value="${escapeAttr(d)}" ${currentDesc===d?'selected':''}>${d}</option>`).join('');
+  if (!currentDesc) evDescSel = null;
+}
+
+function evOnProvSelect() {
+  evProvSel = document.getElementById('evProvSelect').value || null;
+  evDescSel = null;
+  document.getElementById('evResultado').style.display='none';
+  document.getElementById('evEmpty').style.display='none';
+  evPopulateSelects();
+}
+
+function evOnDescSelect() {
+  evDescSel = document.getElementById('evDescSelect').value || null;
+  if (evDescSel) evMostrarEvolucion();
+  else {
+    document.getElementById('evResultado').style.display='none';
+    document.getElementById('evEmpty').style.display='none';
+  }
+}
+
+/* Legacy text-search UI replaced by dropdowns.
 function evOnProvInput() {
   const val=document.getElementById('evProv').value.trim();
   const drop=document.getElementById('evProvDrop');
@@ -2728,6 +3599,32 @@ function evBuscarDesc() {
 }
 
 function evSelDesc(desc) { evDescSel=desc; evBuscarDesc(); evMostrarEvolucion(); }
+*/
+
+function evOnProvInput() {
+  evOnProvSelect();
+}
+
+function evSelProv(p) {
+  evProvSel=p||null;
+  evDescSel=null;
+  const provSelect=document.getElementById('evProvSelect');
+  if (provSelect) provSelect.value=p||'';
+  document.getElementById('evResultado').style.display='none';
+  document.getElementById('evEmpty').style.display='none';
+  evPopulateSelects();
+}
+
+function evBuscarDesc() {
+  evPopulateSelects();
+}
+
+function evSelDesc(desc) {
+  evDescSel=desc||null;
+  const descSelect=document.getElementById('evDescSelect');
+  if (descSelect) descSelect.value=desc||'';
+  evMostrarEvolucion();
+}
 
 function evParseFecha(f) {
   if (!f) return new Date(0);
@@ -2743,7 +3640,7 @@ function evMostrarEvolucion() {
   if (!pool.length) { document.getElementById('evResultado').style.display='none'; document.getElementById('evEmpty').style.display='block'; return; }
   document.getElementById('evEmpty').style.display='none';
   document.getElementById('evResultado').style.display='block';
-  document.getElementById('evDescLabel').textContent=`📦 ${evProvSel||'Todos'} · "${evDescSel}"`;
+  document.getElementById('evDescLabel').textContent=`📦 ${evProvSel||'Todos'} - "${evDescSel}"`;
   document.getElementById('evTableBody').innerHTML=pool.map((r,i)=>{
     const precio=parseFloat(r.precioUnit)||0;
     const anterior=pool[i+1]?(parseFloat(pool[i+1].precioUnit)||0):null;
@@ -2754,7 +3651,7 @@ function evMostrarEvolucion() {
   }).join('');
 }
 
-// ── COMPRAS RECIBIDAS ─────────────────────────────────────
+// COMPRAS RECIBIDAS
 function crMesLabel(mesKey) {
   const [y,m]=mesKey.split('-');
   return ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][parseInt(m,10)-1]+' '+y;
@@ -2788,7 +3685,7 @@ function crRender() {
   const cont=document.getElementById('crContent'), sub=document.getElementById('crSub');
   if (!filas.length) { cont.innerHTML='<div class="empty"><div class="empty-icon">🛒</div><div class="empty-text">Sin datos para los filtros seleccionados.</div></div>'; sub.textContent='Sin datos'; return; }
   const totalGeneral=filas.reduce((s,f)=>s+f.total,0);
-  sub.textContent=`${filas.length} registros · Total $${fmtNum(totalGeneral,2)}`;
+  sub.textContent=`${filas.length} registros - Total $${fmtNum(totalGeneral,2)}`;
   let html='<div class="table-wrap"><table style="min-width:340px"><thead><tr><th>Mes</th><th>Proveedor</th><th style="text-align:right">Art. únicos</th><th style="text-align:right">Total</th></tr></thead><tbody>';
   let lastProv=null;
   filas.forEach(f=>{
@@ -2799,7 +3696,7 @@ function crRender() {
   html+='</tbody></table></div>'; cont.innerHTML=html;
 }
 
-// ── EXPORTAR EXCEL ────────────────────────────────────────
+// EXPORTAR EXCEL
 function renderExportStats() {
   if (!document.getElementById('exportStats')) return;
   const total   = rows.reduce((s,r)=>s+(parseFloat(r.total)||0),0);
@@ -2815,7 +3712,7 @@ function renderExportStats() {
 function exportarExcel() {
   if (!rows.length) { showAlertErr('No hay artículos para exportar.'); return; }
   const nombreBase = document.getElementById('exportNombre').value.trim() || 'ELEMENTA_Entregas';
-  const headers    = ['Fecha.Comp','Fecha.Carga','Proveedor','CUIT','DESCRIPCIÓN','Cant.','P.Unit.','P.Total','ID Comprobante','Tipo'];
+  const headers    = ['Fecha.Comp','Fecha.Carga','Proveedor','Descripcion','Cant.','P.Unit.','Total','IdComp','Tipo'];
   const wb = XLSX.utils.book_new();
   const ws = {};
   headers.forEach((h,c) => { ws[XLSX.utils.encode_cell({r:0,c})] = {v:h,t:'s'}; });
@@ -2826,18 +3723,17 @@ function exportarExcel() {
     ws[XLSX.utils.encode_cell({r:row,c:0})]={v:r.fecha||'',t:'s'};
     ws[XLSX.utils.encode_cell({r:row,c:1})]={v:r._fechaCarga||hoyStr,t:'s'};
     ws[XLSX.utils.encode_cell({r:row,c:2})]={v:r.proveedor||'',t:'s'};
-    ws[XLSX.utils.encode_cell({r:row,c:3})]={v:r.cuit||'',t:'s'};
-    ws[XLSX.utils.encode_cell({r:row,c:4})]={v:r.descripcion||'',t:'s'};
-    ws[XLSX.utils.encode_cell({r:row,c:5})]={v:cant,t:'n',z:'#,##0'};
-    ws[XLSX.utils.encode_cell({r:row,c:6})]={v:punit,t:'n',z:'#,##0.00'};
-    ws[XLSX.utils.encode_cell({r:row,c:7})]={v:total,t:'n',z:'#,##0.00'};
-    ws[XLSX.utils.encode_cell({r:row,c:8})]={v:r._idComp||'',t:'s'};
-    ws[XLSX.utils.encode_cell({r:row,c:9})]={v:r.tipo||'',t:'s'};
+    ws[XLSX.utils.encode_cell({r:row,c:3})]={v:r.descripcion||'',t:'s'};
+    ws[XLSX.utils.encode_cell({r:row,c:4})]={v:cant,t:'n',z:'#,##0'};
+    ws[XLSX.utils.encode_cell({r:row,c:5})]={v:punit,t:'n',z:'#,##0.00'};
+    ws[XLSX.utils.encode_cell({r:row,c:6})]={v:total,t:'n',z:'#,##0.00'};
+    ws[XLSX.utils.encode_cell({r:row,c:7})]={v:r._idComp||'',t:'s'};
+    ws[XLSX.utils.encode_cell({r:row,c:8})]={v:r.tipo||'',t:'s'};
   });
-  ws['!ref']=XLSX.utils.encode_range({s:{r:0,c:0},e:{r:rows.length,c:9}});
-  ws['!cols']=[{wch:13},{wch:13},{wch:22},{wch:16},{wch:50},{wch:7},{wch:14},{wch:14},{wch:14},{wch:22}];
+  ws['!ref']=XLSX.utils.encode_range({s:{r:0,c:0},e:{r:rows.length,c:8}});
+  ws['!cols']=[{wch:13},{wch:13},{wch:22},{wch:50},{wch:7},{wch:14},{wch:14},{wch:14},{wch:22}];
   ws['!freeze']={xSplit:0,ySplit:1};
-  ws['!autofilter']={ref:'A1:J1'};
+  ws['!autofilter']={ref:'A1:I1'};
   XLSX.utils.book_append_sheet(wb, ws, nombreBase.slice(0,31));
   const hoy=new Date();
   const yy=String(hoy.getFullYear()).slice(2), mm=String(hoy.getMonth()+1).padStart(2,'0'), dd=String(hoy.getDate()).padStart(2,'0');
@@ -2878,7 +3774,13 @@ function varExportExcel() {
 }
 
 function apiKeyLoad() {
-  try { const k=localStorage.getItem(API_KEY_STORAGE)||''; if(k){_apiKeyMem=k; document.getElementById('apiKeyInput').value=k;} apiKeySetStatus(!!_apiKeyMem); } catch(e){apiKeySetStatus(false);}
+  try {
+    const k=localStorage.getItem(API_KEY_STORAGE)||'';
+    if(k) _apiKeyMem=k;
+    const inp=document.getElementById('apiKeyInput');
+    if (inp) inp.value='';
+    apiKeySetStatus(!!_apiKeyMem);
+  } catch(e){apiKeySetStatus(false);}
 }
 
 function apiKeyGet() {
@@ -2887,16 +3789,32 @@ function apiKeyGet() {
 
 function apiKeyOnInput() { try { document.getElementById('apiKeyStatus2').textContent=''; } catch(e){} }
 
+function apiKeyReveal() {
+  const fields = document.getElementById('apiKeyFields2');
+  const view = document.getElementById('apiKeyConfiguredView');
+  const input = document.getElementById('apiKeyInput');
+  const title = document.getElementById('apiKeyTitleRow');
+  const help = view && view.nextElementSibling;
+  if (fields) fields.style.display = 'flex';
+  if (view) view.style.display = 'none';
+  if (title) title.style.display = 'flex';
+  if (help) help.style.display = 'block';
+  if (input) { input.value = ''; input.focus(); }
+}
+
 function apiKeySave() {
   const inp=document.getElementById('apiKeyInput'); if(!inp) return;
   const v=inp.value.trim();
   const statusEl=document.getElementById('apiKeyStatus2');
-  if (!v) { _apiKeyMem=''; try{localStorage.removeItem(API_KEY_STORAGE);}catch(e){} if(statusEl){statusEl.textContent='Borrada';statusEl.style.color='var(--muted)';} semaforoRender(); return; }
+  if (!v) { _apiKeyMem=''; try{localStorage.removeItem(API_KEY_STORAGE);}catch(e){} if(statusEl){statusEl.textContent='Borrada';statusEl.style.color='var(--muted)';} apiKeySetStatus(false); semaforoRender(); return; }
   if (!v.startsWith('sk-ant-')) { if(statusEl){statusEl.textContent='Formato inválido (sk-ant-...)';statusEl.style.color='var(--warn)';} return; }
   _apiKeyMem=v; try{localStorage.setItem(API_KEY_STORAGE,v);}catch(e){}
+  inp.value='';
   apiKeySetStatus(true);
   semaforoRender();
-  if (driveTokenOk()) {
+  if (LOCAL_ONLY) {
+    showAlertSuccess('✅ API key guardada en localhost.');
+  } else if (driveTokenOk()) {
     showAlertSuccess('✅ API key guardada. Sincronizando con Drive...');
     setTimeout(() => drivePush(), 500);
   } else {
@@ -2906,58 +3824,118 @@ function apiKeySave() {
 
 function apiKeySetStatus(ok) {
   try {
-    const el = document.getElementById('apiKeyStatus2');
-    if (!el) return;
-    el.textContent = ok ? '✓ Configurada' : '✗ No configurada';
-    el.style.color = ok ? 'var(--accent)' : 'var(--danger)';
-    // Ocultar sección completa si ya está configurada
-    const section = document.getElementById('apiKeySection');
-    if (section) section.style.display = ok ? 'none' : 'block';
+    const el=document.getElementById('apiKeyStatus2');
+    const fields=document.getElementById('apiKeyFields2');
+    const view=document.getElementById('apiKeyConfiguredView');
+    const title=document.getElementById('apiKeyTitleRow');
+    const help=view&&view.nextElementSibling;
+    if(el) {
+      el.textContent=ok?'✓ Configurada':'✗ No configurada';
+      el.style.color=ok?'var(--accent)':'var(--danger)';
+    }
+    if(fields) fields.style.display = ok ? 'none' : 'flex';
+    if(view) view.style.display = ok ? 'flex' : 'none';
+    if(title) title.style.display = ok ? 'none' : 'flex';
+    if(help) help.style.display = ok ? 'none' : 'block';
+  } catch(e){}
+}
+
+function apiKeyShowEdit() { apiKeyReveal(); }
+
+// CRÉDITO API
+function creditDefaultPeriodStart() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-01`;
+}
+
+function fmtMoney(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return '--';
+  return n.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function creditReadSettings() {
+  const budgetEl = document.getElementById('creditBudgetUsd');
+  const startEl = document.getElementById('creditPeriodStart');
+  const rawBudget = parseFloat(budgetEl?.value !== undefined && budgetEl.value !== '' ? budgetEl.value : localStorage.getItem(creditBudgetStorageKey()));
+  const budgetUsd = Number.isFinite(rawBudget) && rawBudget >= 0 ? rawBudget : 20;
+  const periodStart = startEl?.value || localStorage.getItem(creditPeriodStartStorageKey()) || creditDefaultPeriodStart();
+  return { budgetUsd, periodStart };
+}
+
+function creditLoad() {
+  try {
+    const budgetEl = document.getElementById('creditBudgetUsd');
+    const startEl = document.getElementById('creditPeriodStart');
+    const rawBudget = parseFloat(localStorage.getItem(creditBudgetStorageKey()));
+    const budget = Number.isFinite(rawBudget) && rawBudget >= 0 ? rawBudget : 20;
+    const periodStart = localStorage.getItem(creditPeriodStartStorageKey()) || creditDefaultPeriodStart();
+    if (budgetEl) budgetEl.value = budget;
+    if (startEl) startEl.value = periodStart;
+    creditRender();
+    setTimeout(() => creditRefresh({ silent:true }), 200);
   } catch(e) {}
 }
 
-function apiKeyShowEdit() {}  // compatibilidad (ya no hay hide/show del campo)
-
-// ── CRÉDITO API ────────────────────────────────────────────
-function creditLoad() {
-  try { document.getElementById('creditInit').value=parseFloat(localStorage.getItem('elementa_credit_init'))||20; creditRender(); } catch(e){}
-}
-
 function creditSave() {
-  try { localStorage.setItem('elementa_credit_init', parseFloat(document.getElementById('creditInit').value)||20); creditRender(); } catch(e){}
-}
-
-function creditReset() {
-  try { localStorage.setItem('elementa_credit_used',0); localStorage.setItem('elementa_credit_proc',0); creditRender(); } catch(e){}
-}
-
-function creditAddImage(n) {
   try {
-    const used=parseFloat(localStorage.getItem('elementa_credit_used'))||0;
-    localStorage.setItem('elementa_credit_used', used+COST_PER_IMAGE*(n||1));
-    localStorage.setItem('elementa_credit_proc', (parseInt(localStorage.getItem('elementa_credit_proc'))||0)+(n||1));
+    const { budgetUsd, periodStart } = creditReadSettings();
+    localStorage.setItem(creditBudgetStorageKey(), budgetUsd);
+    localStorage.setItem(creditPeriodStartStorageKey(), periodStart);
     creditRender();
-    // Sincronizar el uso con Drive
-    if (driveTokenOk()) setTimeout(()=>drivePushSilent(),2000);
-  } catch(e){}
+    clearTimeout(window._creditRefreshTimer);
+    window._creditRefreshTimer = setTimeout(() => creditRefresh({ silent:true }), 500);
+  } catch(e) {}
+}
+
+async function creditRefresh(options={}) {
+  const { budgetUsd, periodStart } = creditReadSettings();
+  const label = document.getElementById('creditLabel2');
+  if (label && !options.silent) label.textContent = 'Consultando...';
+  try {
+    const url = `/api/anthropic-credit?budgetUsd=${encodeURIComponent(budgetUsd)}&periodStart=${encodeURIComponent(periodStart)}`;
+    const resp = await fetch(url, { cache:'no-store' });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    _creditState = await resp.json();
+  } catch(e) {
+    _creditState = { status:'anthropic_error', ok:false, budgetUsd, usedUsd:null, availableUsd:null, periodStart, checkedAt:new Date().toISOString(), error:e.message };
+  }
+  creditRender();
+  semaforoRender();
+  return _creditState;
 }
 
 function creditRender() {
   try {
-    const init=parseFloat(localStorage.getItem('elementa_credit_init'))||20;
-    const used=parseFloat(localStorage.getItem('elementa_credit_used'))||0;
-    const proc=parseInt(localStorage.getItem('elementa_credit_proc'))||0;
-    const remaining=Math.max(0,init-used);
-    const totalPosible=Math.floor(init/COST_PER_IMAGE);
-    const imgsLeft=Math.max(0,Math.floor(remaining/COST_PER_IMAGE));
-    const pct=Math.min(100,(remaining/init)*100);
-    const bar=document.getElementById('creditBar2'), label=document.getElementById('creditLabel2'), procLbl=document.getElementById('creditProcLabel2');
+    const { budgetUsd, periodStart } = creditReadSettings();
+    const bar=document.getElementById('creditBar2'), label=document.getElementById('creditLabel2');
     if(!bar||!label) return;
+    const state = _creditState || {};
+    const used = Number.isFinite(Number(state.usedUsd)) ? Number(state.usedUsd) : null;
+    const available = Number.isFinite(Number(state.availableUsd)) ? Number(state.availableUsd) : null;
+    const effectiveBudget = Number(state.budgetUsd || budgetUsd) || 20;
+    const pct = available === null ? 0 : Math.max(0, Math.min(100, (available / Math.max(effectiveBudget, 0.01)) * 100));
     bar.style.width=pct+'%';
     bar.style.background=pct>50?'linear-gradient(90deg,var(--accent),var(--accent2))':pct>20?'linear-gradient(90deg,var(--warn),#f59e0b)':'linear-gradient(90deg,var(--danger),#f87171)';
-    label.textContent=imgsLeft.toLocaleString('es-AR')+' imgs restantes';
-    label.style.color=pct>50?'var(--accent)':pct>20?'var(--warn)':'var(--danger)';
-    if(procLbl) procLbl.textContent=proc>0?`· ${proc} procesadas`:'';
+    if (state.status === 'ok') {
+      label.textContent=`USD ${fmtMoney(available)} disponibles - USD ${fmtMoney(used)} usados reales`;
+      label.style.color='var(--accent)';
+    } else if (state.status === 'no_credit') {
+      label.textContent=`Sin credito API - USD ${fmtMoney(used)} usados reales`;
+      label.style.color='var(--danger)';
+    } else if (state.status === 'no_admin_key') {
+      label.textContent='Verificar credito API: falta Admin API key local';
+      label.style.color='var(--warn)';
+    } else if (state.status === 'invalid_admin_key') {
+      label.textContent='Admin API key local invalida';
+      label.style.color='var(--danger)';
+    } else if (state.status === 'anthropic_error') {
+      label.textContent='Verificar credito API: error de consulta';
+      label.style.color='var(--warn)';
+    } else {
+      label.textContent=`Credito total USD ${fmtMoney(effectiveBudget)} desde ${periodStart}`;
+      label.style.color='var(--muted)';
+    }
   } catch(e){}
 }
 </script>
